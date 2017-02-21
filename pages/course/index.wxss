@@ -6,6 +6,7 @@ text{
 /*容器*/
 .contain{
 
+    width: 100%;
     height: 100%; 
 }
 
@@ -16,7 +17,6 @@ height: 50px;
 display: flex;
 flex-direction: row;
 text-align: center;
-background: white;
 border-bottom: 1px solid rgb(245, 245, 245);
 }
 
@@ -29,30 +29,33 @@ border-bottom: 1px solid rgb(245, 245, 245);
     color: darkgray;
 }
 
- .menu-text.selected{
+/*3.选中的按钮*/
+ .titleView.selectedItem{
      color: red;
  }
 
-/*3.列表view*/
+/*4.列表view*/
 .item{
 
- background: white;
  display: flex;
  flex-direction: column;
- /*border-bottom: 1px solid lightgrey;*/
+ border-bottom: 0.5px solid rgb(245, 245, 245);
  /*border-bottom-width: 8px;*/
- margin-bottom: 8px;
+ /*margin: 8px;*/
+ padding: 8px;
 }
 
+/*5.上部分*/
 .item-top{
     display: flex;
     flex-direction: row;
 }
-/*4.图片背景View*/
-.imageBgView{
+
+/*6.上部分左边*/
+.item-top-left{
     width: 80px;
     height: 80px;
-    margin: 8px 0 0px 8px;
+    margin: 8px 0;
 
 }
 
@@ -60,56 +63,88 @@ border-bottom: 1px solid rgb(245, 245, 245);
 .item image{
 width: 80px;
 height: 80px;
- border-radius:50%;
 }
 
-/*6.文字背景View*/
-.textBgView{
-   flex: 1;
-    margin: 8px;
+/**/
+.item-top-right view{
+    margin-top: 5px;
 }
 
 /*7.文字背景View*/
-.textBgView view{
-    margin:5px 0 0 0;
+.item-top-right{
+    margin:5px 0 0 8px;
+    flex: 1;
 }
 
-/*8.标题*/
+
+
+/*标题*/
 .titleText{
+    display: block;
     font-size: 15px;
     color: black;
+     margin-top: 5px;
 }
 
-/*9.年级*/
-.gradeText{
-    float: right;
+/*学校*/
+.schoolText{
+    display: inline-block;
+
+/*超出一行文字自动隐藏*/
+ overflow:hidden; 
+ /*文字隐藏后添加省略号*/
+ text-overflow:ellipsis;
+ /*强制不换行*/
+  white-space:nowrap;
+  /*设置固定宽度*/
+  width: 110px;
 }
 
-/*10.时间*/
-.timeText{
+/*名字*/
+.nameText{
+float: right;
+}
+
+/*课酬*/
+.classText{
+  
+}
+
+/*单价*/
+.priceText{
  float: right;
+}
+
+/*课时*/
+.timeText{
+
 }
 
 /*11.小时数*/
-.timeCountText{
+.countText{
  float: right;
 }
 
-/*12.价格*/
-.priceText{
 
-float: right;
-font-size: 14px;
-color: burlywood;
+
+/*13.底部部分*/
+.item-bottom{
 }
 
-/*13.底部价格View*/
-.item-bottom-priceView{
-    margin: 0 8px 8px 8px;
+/*总价格*/
+.totalPriceText{
+    float: right;
+ color: burlywood;
+ font-size: 14px;
 }
+ .swiper{
+     
+
+    height: 50rem;
+   /*background: yellow;*/
+   /*height: 400px;*/
+ }
+.swiper-item{
  
-swiper{
-    /*background: green;*/
-    height: 500px;
 }
 

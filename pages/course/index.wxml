@@ -3,42 +3,52 @@
 <!--1.菜单栏-->
 <view class ='memuView'> 
  <block wx:for-items="{{menuItems}}"> 
-    <view class="titleView" bindtap="tapMenuItem" id="{{item.id}}"> 
-      <text class="menu-text {{currentMenuID == item.id  ? 'selected' : ''}}"  
-      >{{item.courseName}} </text>
+    <view class="titleView {{currentID == item.id  ? 'selectedItem' : ''}}" bindtap="tapMenuItem" id="{{item.id}}"> {{item.courseName}} 
     </view>
     </block>
  </view>
 
+<!--<scroll-view scroll-y="true" scroll-x="true">
+</scroll-view>-->
 
  <!--2.列表View-->
-<swiper class="swiper" interval="{{interval}}" duration="{{duration}}" 
+<swiper class="swiper" interval="3000" duration="1200" 
 current="{{currentPage}}" bindchange="changeCurrentPage">
 
- <block wx:for-items="{{lists}}">       
-<swiper-item id="{{item}}">
-  <block wx:for-items="{{[0,0,0]}}">    
+ <block wx:for-items="[0,0,0]">  
+
+<swiper-item class="swiper-item" id="{{item}}">
+
+  <block wx:for-items="{{[1,1,1,1,1,1,1,1,1]}}">   
+
  <!--列表背景View-->
  <view class="item">
-
  <!--item上部分-->
 <view class="item-top">
- <view class="imageBgView">  <image src="../../image/0713head.png"></image> </view>
-                  <view class="textBgView">
-                  <view> <text class="titleText">{{courseTitle}}</text> </view>
-                  <view>  <text>小班辅导</text>  <text class="gradeText">{{courseGrade}}</text> </view>
-                  <view> <text>课酬</text>  <text class="timeText">{{coursePay}}</text> </view>
-                 <view>  <text>课时</text>  <text class="timeCountText">{{courseCount}}</text> </view>
-                  </view>
+ <view class="item-top-left">
+   <image src="../../image/0713head.png"></image>
+ </view>
+
+<view class="item-top-right">
+   <text class="titleText">vip一对一</text> 
+<view class="second-line-view">
+    <text class="schoolText">广州大学</text>  <text class="nameText">黄华华</text>
+ </view>
+
+<view class="third-line-view">
+   <text class="classText">课酬</text>  <text class="priceText">￥100/小时</text> 
+</view>
+<view class="fourth-line-view">
+   <text class="timeText">课时</text>  <text class="countText">x 2</text>
+</view>
+</view>
 </view>
 
 <!--item下部分-->
 <view class="item-bottom">
-  <view class="item-bottom-priceView"> 
-  <text class="orderText">{{courseOrderid}}</text> 
-   <text class="priceText">{{coursePrice}}</text> </view>
-</view>
-
+   <text class="orderText">订单号:1094801</text> 
+   <text class="totalPriceText">总价格: ￥200</text>
+ </view>
  </view>
 
  </block>

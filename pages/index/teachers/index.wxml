@@ -1,0 +1,36 @@
+
+<view class="contain"> 
+
+<block wx:for-items="{{teachersData}}"> 
+
+    <!--课程cell-->
+     <view class="item" >
+
+<!--图片-->
+      <view  class="item-left"> 
+       <image class="courseImage" src="http://112.74.128.53:9997/{{item.PhoneLink}}" />
+      </view>
+
+<!--文字-->
+      <view class="item-right">
+
+<text class="titleText">{{item.CourseTitle}}</text>
+<text class="schoolText">{{item.TeacherName}}</text>  
+
+      <view class="item-right-bottomView">
+   <text class="teacherAreaText">{{item.address}}</text>  
+      <text class="priceText">{{item.MinPrice}}￥/小时</text> 
+       </view>
+
+       </view> 
+    
+     </view>
+
+  </block>
+
+  </view>
+
+ <!--加载提示-->
+  <loading hidden="{{loadingHide}}">
+        加载中...
+    </loading>

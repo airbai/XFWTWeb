@@ -1,0 +1,99 @@
+
+/*课程cell*/
+.item{
+ background: white;
+ height: 80px;
+   display: flex;
+   flex-direction: row;
+   padding: 8px;
+   border-top: 0.5px solid rgb(245, 245, 245);
+ 
+   /*y轴对齐方式*/
+  /*align-items: center; */
+  /*x轴对齐方式*/
+  /*justify-content: space-between;*/ 
+}
+
+/*图片背景View*/
+.item-left{
+
+  width: 80px;
+  height: 80px;
+}
+
+/*课程图片*/
+.courseImage{
+
+  width: 80px;
+  height: 80px;
+}
+
+/*右边item*/
+.item-right{
+
+/*width: 100% 跟flex: 1 原理相同，占满两侧空白部分*/   
+flex: 1;
+margin: 0 0px 0 10px;
+
+}
+
+
+/*标题*/
+.titleText{
+  display: block;
+
+/*超出一行文字自动隐藏*/
+ overflow: hidden;
+ /*文字隐藏后添加省略号*/
+ text-overflow:ellipsis;
+ /*强制不换行*/
+  white-space:nowrap;
+   /*设置固定宽度*/
+   width: 210px;
+}
+
+
+/*毕业院校*/
+.schoolText{
+
+display: block;
+margin-top: 17px;
+ font-size: 12px;
+   color: darkgray;
+
+}
+
+/*右边底部view*/
+.item-right-bottomView{
+  
+  margin-top: 17px;
+display: flex;
+flex-direction: row;
+/*子项目两端对齐*/
+justify-content: space-between;
+
+}
+
+/*教学区域*/
+.teacherAreaText{
+
+  font-size: 12px;
+   color: darkgray;
+ 
+margin-right: 8px;
+/*超出一行文字自动隐藏*/
+ overflow:hidden; 
+ /*文字隐藏后添加省略号*/
+ text-overflow:ellipsis;
+ /*强制不换行*/
+  white-space:nowrap;
+  /*设置固定宽度*/
+  width: 120px;
+}
+
+/*价格*/
+.priceText{
+ 
+  font-size: 13px;
+  color: burlywood;
+}

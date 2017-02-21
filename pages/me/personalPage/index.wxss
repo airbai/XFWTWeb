@@ -1,0 +1,97 @@
+
+/*滚动区域*/
+.scrollView{
+    width: 100%;
+    height: 100%;
+    text-align: center;
+}
+
+
+/*图片view*/
+ .imageView{
+display: inline-block;
+    width: 70px;
+    height: 70px;
+    margin: 50px 0;
+}
+
+/*图片*/
+.scrollView .imageView image{
+   width: 70px;
+    height: 70px;  
+    border-radius:50%;
+}
+
+/*所有text控件*/
+.scrollView text{
+  width: 100px;
+    margin-left: 10px;
+    text-align: left;
+    font-size: 17px;  
+}
+
+/*所有input*/
+.scrollView input{
+  width: 100%;
+margin: 0 10px 0 10px;
+text-align: right; 
+  font-size: 13px;  
+  color: gray; 
+}
+
+/*姓名view*/
+.nameView{
+        display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+
+/*学校view*/
+.mobileView{
+        display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+
+/*省份view*/
+.provinceView{
+        display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+
+
+/*性别view*/
+.sexView{
+        display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+.sexView checkbox-group{
+
+   /*让控件的宽度撑开，把两侧多余的空白部分也占满！*/
+   flex:1 ;
+   text-align: right; 
+   margin-right: 10px;
+}
+
+/*家庭住址view*/
+.addressView{
+        display: flex;
+    flex-direction: row;
+    margin-bottom: 10px;
+}
+
+/*编辑view*/
+.editView{
+    margin: 40px 10px 0 10px;
+}
+/*取消按钮*/
+.cancle-button{
+    margin-bottom: 10px;
+    color: red;
+}

@@ -4,7 +4,10 @@
 
 <!--头部-->
 <view class="headerView">
- <image class="picture" src="{{picture}}"></image>
+<view class="imageView" bindtap="tapImageView">
+<image class="picture" src="{{picture}}"> </image>
+</view>
+ 
  <label class="name">{{name}}</label>
 </view>
 
@@ -17,7 +20,6 @@
 
 </view>
  </block>
-
 
 </scroll-view>
 

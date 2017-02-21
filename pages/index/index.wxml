@@ -17,7 +17,7 @@
     <view class="nav">
 
     <block wx:for-items="{{navs}}"> 
-    <view class="boxView" data-type="{{item.text}}"> 
+    <view class="boxView" id="{{item.id}}" data-type="{{item.text}}" bindtap="clickedBoxView"> 
       <image src="{{item.image}}"/>
       <text>{{item.text}}</text>
     </view>
@@ -32,28 +32,33 @@
     </view>
 
 
-  <block wx:for-items="{{cell}}"> 
+  <block wx:for-items="{{teachersData}}"> 
 
     <!--课程cell-->
      <view class="item" >
 
 <!--图片-->
       <view  class="item-left"> 
-       <image class="courseImage" src="{{item.image}}" />
+       <image class="courseImage" src="http://112.74.128.53:9997/{{item.PhoneLink}}" />
       </view>
 
 <!--文字-->
       <view class="item-right">
-     <view class="titleView">   <text class="titleText">{{item.title}}</text>   </view>
-     <view class="timeView">  <text class="timeText">{{item.time}}</text>  </view>
-      <view class="priceView"> <text class="gradeText">{{item.grade}}</text>  <text class="priceText">{{item.price}}</text> </view>
+    
+      <text class="titleText">{{item.CourseTitle}}</text> 
+     
+       <text class="nameText">{{item.TeacherName}}</text>   
+      <view class="item-right-bottomView"> 
+      <text class="areaText">{{item.TeacherArea}}</text> 
+       <text class="priceText">￥{{item.MinPrice}}/小时</text> </view>
        </view> 
     
      </view>
 
   </block>
-
-
-
-
 </view>
+
+ <!--加载提示-->
+  <loading hidden="{{loadingHide}}">
+        加载中...
+    </loading>

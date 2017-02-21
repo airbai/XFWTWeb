@@ -20,7 +20,7 @@ name: "Wong",
 
     {
         icon:'../../image/my_wallet@2x.png',
-       text:'我的钱包',
+       text:'我的课程',
        arrow:'../../image/0106arrow3x.png'
     },
 
@@ -45,5 +45,12 @@ name: "Wong",
     }
   ],
 
+    },
+
+// 触摸头像事件：
+    tapImageView:function(){
+  wx.navigateTo({
+     url: 'personalPage/index'
+  })
     }
 })

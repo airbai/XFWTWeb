@@ -80,11 +80,11 @@ flex-direction:column;
 
 /*课程cell*/
 .item{
- background: white;
+
  height: 80px;
    display: flex;
    flex-direction: row;
-   padding: 5px 0 5px 5px;
+   padding: 8px;
    border-top: 0.5px solid rgb(245, 245, 245);
    /*y轴对齐方式*/
   /*align-items: center; */
@@ -112,30 +112,71 @@ flex-direction:column;
   flex: 1; /*占满两侧空白部分*/
 }
 
-/*右边item的view*/
-.item-right view{
-  margin: 8px 0 0 5px;
+/*标题*/
+.titleText{
+
+/*position: absolute;
+    width:70%;
+   */
+margin-top: 2px;
+  display: block;
+  /*超出一行文字自动隐藏*/
+ overflow: hidden;
+ /*文字隐藏后添加省略号*/
+ text-overflow:ellipsis;
+ /*强制不换行*/
+  white-space:nowrap;
+   /*设置固定宽度*/
+   width: 210px;
 }
 
-/*时间*/
-.timeText{
 
- font-size: 11px;
+/*名字*/
+.nameText{
+
+display: block;
+margin-top: 17px;
+ font-size: 12px;
    color: darkgray;
 
 }
 
-/*年级*/
-.gradeText{
-  font-size: 11px;
-   color: darkgray;
-
+/*底部价格view*/
+.item-right-bottomView{
+  
+  margin-top: 17px;
+  /*display: flex;
+flex-direction: row;*/
+/*子项目两端对齐*/
+/*justify-content: space-between;*/
 }
+
+
+/*区域*/
+.areaText{
+
+  
+/*position: absolute;
+    width:70%;*/
+
+ font-size: 12px;
+   color: darkgray;
+  /*超出一行文字自动隐藏*/
+ overflow: hidden;
+ /*文字隐藏后添加省略号*/
+ text-overflow:ellipsis;
+ /*强制不换行*/
+  white-space:nowrap;
+   /*设置固定宽度*/
+   width: 120px;
+}
+
+
 /*价格*/
 .priceText{
 
   font-size: 13px;
   color: burlywood;
   float: right;
-  padding-right: 10px;
+  /*padding-right: 10px;*/
 }

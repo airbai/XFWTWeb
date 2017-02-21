@@ -1,46 +1,29 @@
-
-//  不要在 onLaunch 的时候调用 getCurrentPage()此时 page 还没有生成。 
-// getCurrentPage是获取当前页面的实例对象。
-
 Page({
 
-    data:{
+  data:{
+        teachersData:[ ],
+        loadingHide:false,
+        index: 1 
+  },
 
-// 1.菜单栏数据
-  menuItems:[
-      {
-       courseName:'小学课程',
-       id:'0'
-    },
-      {
-       courseName:'初中课程',
-       id:'1'
-    },
-      {
-       courseName:'高中课程',
-       id:'2'
-    }
-  ],
-
-    // 3.item数据
-    image:"../../image/0713head.png",
-     currentID : '0',
-     currentPage:0,
-     teachersData: []
- },
-
-// 方法： ---------------------------
- onLoad:function(options){
+  
+  onLoad:function(options){
     // 生命周期函数--监听页面加载
-   this.reqData(1,1,1)
+
+  wx.setNavigationBarTitle({
+    title: options.titleType
+  })
+
+    this.reqData(1,options.id,options.id)
+
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
-   
+    
   },
   onShow:function(){
     // 生命周期函数--监听页面显示
-   
+    
   },
   onHide:function(){
     // 生命周期函数--监听页面隐藏
@@ -48,59 +31,51 @@ Page({
   },
   onUnload:function(){
     // 生命周期函数--监听页面卸载
-   
+    
   },
   onPullDownRefresh: function() {
     // 页面相关事件处理函数--监听用户下拉动作
-    
+
+     // 1.清空数组
+    this.data.teachersData = []
+
+    // 2.重新赋值页码
+    this.data.index = 1
+
+    //  3.请求数据：
+    this.reqData(1,1,1)
   },
   onReachBottom: function() {
     // 页面上拉触底事件的处理函数
-    
+     
+    this.data.index = this.data.index + 1
+
+    // 2.请求数据
+    this.reqData(this.data.index,1,1)
   },
   onShareAppMessage: function() {
     // 用户点击右上角分享
     return {
-      title: 'title', // 分享标题
-      desc: 'desc', // 分享描述
+      title: '学富网老师', // 分享标题
+      desc: 'Wong分享了一个好老师给您!', // 分享描述
       path: 'path' // 分享路径
     }
   },
-
-
-// 3.点击菜单栏
-tapMenuItem:function(e){
-
-   this.setData({
-     currentID: e.currentTarget.id,
-     currentPage: e.currentTarget.id
-    })
-},
-
-// 滑动改变当前页面
-changeCurrentPage:function(e){
- 
-   let id = e.detail.current
-   this.setData({
-     currentID:id
-    })
-},
-
 
 // func:请求数据：
 reqData:function(index,recommendType,teacherType){
 
 //1.调用网络模板获取md5加密后的字符串
- var networkTemplate = require('../../utils/network.js'); 
+ var networkTemplate = require('../../../utils/network.js'); 
  var UpperMd5Str = networkTemplate.getUpperMd5Str()
 
 
 //2.提示框
 var that = this
 
-//   that.setData({
-//    loadingHide:false
-// })
+  that.setData({
+   loadingHide:false
+})
 
 //3. 请求数据
 wx.request({
@@ -139,4 +114,3 @@ wx.request({
 })
 
 
- 

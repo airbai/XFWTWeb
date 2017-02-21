@@ -1,0 +1,58 @@
+<view class="contain">
+<scroll-view class="scrollView" scroll-y="true" >
+
+<!--头像-->
+<view class="imageView" bindtap="tapIcon">
+<image src="{{iconLink}}"></image>
+</view>
+
+
+<!--名字-->
+<view class="nameView">
+<text>姓名</text>  <input placeholder="请输入你的姓名.." value="{{jsonData.NickName}}"/>
+</view>
+
+<!--手机号-->
+<view class="mobileView">
+<text>手机号</text>  <input placeholder="你的手机号是？.." value="{{jsonData.Mobile}}" disabled="false"/>
+</view>
+
+<!--省份-->
+<view class="provinceView">
+<text>省份</text>  <input placeholder="你的省份是？？.." value="{{jsonData.Province}}"/>
+</view>
+
+<!--性别-->
+<view class="sexView">
+<text>性别</text> 
+
+<checkbox-group bindchange="checkboxChange">
+  <label class="boyCheckbox">
+    <checkbox value="boy" checked="{{boyChecked}}"/>男生
+  </label>
+  <label class="girlCheckbox">
+    <checkbox value="girl"  checked="{{girlChecked}}"/>女生
+  </label>
+</checkbox-group>
+
+</view>
+
+<!--家庭住址-->
+<view class="addressView">
+<text>家庭住址</text>  <input placeholder="你的住址是？？.." value="{{jsonData.address}}"/>
+</view>
+
+<!--取消、保存-->
+<view class="editView">
+<button class="cancle-button" bindtap="cancle">取消</button>
+<button bindtap="keep">保存</button>
+</view>
+
+</scroll-view>
+
+</view>
+
+ <!--加载提示-->
+  <loading hidden="{{loadingLogo}}">
+        加载中...
+    </loading>
