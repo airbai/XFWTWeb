@@ -8,7 +8,10 @@ App({
     longitude:null,
     latitude:null,
 serverUrl:'http://112.74.128.53:9528/APP_Action.ashx?',
-imageUrl: 'http://112.74.128.53:9997/'
+imageUrl: 'http://112.74.128.53:9997/',
+windowWidth:null,
+windowHeight:null
+
   },
 
 // 1.程序启动完毕
@@ -24,13 +27,20 @@ imageUrl: 'http://112.74.128.53:9997/'
 
     // 获取用户地理位置
     var that = this
-
     wx.getLocation({
   type: 'wgs84',
   success: function(res) {
 
     that.globalData.longitude = res.longitude
       that.globalData.latitude = res.latitude
+  }
+})
+
+// 获取用户系统信息：手机宽高
+wx.getSystemInfo({
+  success: function(res) {
+     that.globalData.windowWidth = res.windowWidth
+      that.globalData.windowHeight = res.windowHeight
   }
 })
   },

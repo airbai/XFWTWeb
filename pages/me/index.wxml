@@ -1,6 +1,6 @@
 <view class="contain">
 
-<scroll-view>
+<scroll-view class="scroll-view">
 
 <!--头部-->
 <view class="headerView">

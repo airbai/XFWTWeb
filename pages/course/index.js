@@ -23,16 +23,16 @@ Page({
   ],
 
     // 3.item数据
-    image:"../../image/0713head.png",
      currentID : '0',
      currentPage:0,
-     teachersData: []
+     teachersData: [],
+     loadingHide:false
  },
 
 // 方法： ---------------------------
  onLoad:function(options){
     // 生命周期函数--监听页面加载
-   this.reqData(1,1,1)
+   this.reqData(1,3,3)
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
@@ -110,7 +110,7 @@ wx.request({
      RecommendType: recommendType ,
      TeacherType: teacherType,
      pageIndex: index,
-     pageSize: '15' ,
+     pageSize: '10' ,
      VerSafe: UpperMd5Str
   },
   header: {

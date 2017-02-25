@@ -3,7 +3,7 @@
  
 
 <!--轮播图-->
-<swiper class="swiper" indicator-dots="true"
+<swiper class="home-swiper" indicator-dots="true"
                 autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
             <block wx:for-items="{{imgUrls}}">
                 <swiper-item>
@@ -48,9 +48,10 @@
       <text class="titleText">{{item.CourseTitle}}</text> 
      
        <text class="nameText">{{item.TeacherName}}</text>   
-      <view class="item-right-bottomView"> 
+      
       <text class="areaText">{{item.TeacherArea}}</text> 
-       <text class="priceText">￥{{item.MinPrice}}/小时</text> </view>
+       <text class="priceText">￥{{item.MinPrice}}/小时</text> 
+    
        </view> 
     
      </view>

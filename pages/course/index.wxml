@@ -8,52 +8,41 @@
     </block>
  </view>
 
-<!--<scroll-view scroll-y="true" scroll-x="true">
-</scroll-view>-->
 
  <!--2.列表View-->
-<swiper class="swiper" interval="3000" duration="1200" 
-current="{{currentPage}}" bindchange="changeCurrentPage">
-
- <block wx:for-items="[0,0,0]">  
-
-<swiper-item class="swiper-item" id="{{item}}">
-
-  <block wx:for-items="{{[1,1,1,1,1,1,1,1,1]}}">   
+<scroll-view>
 
  <!--列表背景View-->
- <view class="item">
+ <view class="item" wx:for="{{teachersData}}">
+
  <!--item上部分-->
 <view class="item-top">
  <view class="item-top-left">
-   <image src="../../image/0713head.png"></image>
+   <image src="http://112.74.128.53:9997/{{item.PhoneLink}}"></image>
  </view>
-
 <view class="item-top-right">
-   <text class="titleText">vip一对一</text> 
-<view class="second-line-view">
-    <text class="schoolText">广州大学</text>  <text class="nameText">黄华华</text>
- </view>
-
-<view class="third-line-view">
-   <text class="classText">课酬</text>  <text class="priceText">￥100/小时</text> 
-</view>
-<view class="fourth-line-view">
-   <text class="timeText">课时</text>  <text class="countText">x 2</text>
-</view>
+   <text class="titleText">{{item.CourseTitle}}</text> 
+    <text class="schoolText">{{item.Degree}}</text>
+    <text class="nameText">{{item.TeacherName}}</text>
+    <text class="classText">可售课程数</text>
+     <text class="priceText">{{item.CourseCount}}个</text> 
+    <text class="timeText">距离</text> 
+    <text class="countText">{{item.distance}}米</text>
 </view>
 </view>
 
 <!--item下部分-->
 <view class="item-bottom">
-   <text class="orderText">订单号:1094801</text> 
-   <text class="totalPriceText">总价格: ￥200</text>
+   <text class="orderText">被查看次数:{{item.LookCount}}</text> 
+   <text class="totalPriceText">￥{{item.MinPrice}}/小时</text>
  </view>
  </view>
 
- </block>
- </swiper-item>
- </block>
- </swiper>
+</scroll-view> 
 
   </view>
+
+   <!--加载提示-->
+  <loading hidden="{{loadingHide}}">
+        加载中...
+    </loading>
