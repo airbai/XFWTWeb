@@ -1,0 +1,59 @@
+/*.contain{
+
+display: flex;
+flex-direction: column;
+text-align: center;
+}*/
+
+/*手机号/验证码/密码背景view*/
+.phone-input-View , .code-input-View , .pwd-input-View , .again-pwd-input-View {
+    margin: 0 20px 10px 20px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    border-top: solid 0.5px  rgb(245, 245, 245);
+    border-bottom: solid 0.5px  rgb(245, 245, 245);
+}
+
+/*手机号view*/
+.phone-input-View{
+    margin-top: 60rpx;
+}
+
+
+/*+86和“密码”*/
+.contain text {
+     
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+     border-right: solid 0.5px  rgb(245, 245, 245);
+}
+
+/*验证码view*/
+.code-view{
+
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    background: red;
+    font-size: 12px;
+    color: white;
+    text-align: center;
+}
+
+/*所有input*/
+input{
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    /*调整placeholder左边距*/
+    padding-left:15px;
+    font-size: 14px;
+}
+
+/*注册btn*/
+.registBtn{
+    margin: 40px 10px 0 10px;
+}

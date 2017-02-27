@@ -2,10 +2,8 @@
 
 <!--1.菜单栏-->
 <view class ='memuView'> 
- <block wx:for-items="{{menuItems}}"> 
-    <view class="titleView {{currentID == item.id  ? 'selectedItem' : ''}}" bindtap="tapMenuItem" id="{{item.id}}"> {{item.courseName}} 
+    <view wx:for="{{menuItems}}" class="titleView {{currentID == item.id  ? 'selectedItem' : ''}}" bindtap="tapMenuItem" id="{{item.id}}"> {{item.courseName}} 
     </view>
-    </block>
  </view>
 
 
@@ -27,7 +25,7 @@
     <text class="classText">可售课程数</text>
      <text class="priceText">{{item.CourseCount}}个</text> 
     <text class="timeText">距离</text> 
-    <text class="countText">{{item.distance}}米</text>
+    <text class="countText">{{item.distance}}m</text>
 </view>
 </view>
 

@@ -9,30 +9,31 @@ Page({
 // 1.菜单栏数据
   menuItems:[
       {
-       courseName:'小学课程',
-       id:'0'
-    },
-      {
-       courseName:'初中课程',
+       courseName:'学前老师',
        id:'1'
     },
       {
-       courseName:'高中课程',
+       courseName:'资深老师',
        id:'2'
+    },
+      {
+       courseName:'外国教师',
+       id:'3'
     }
   ],
 
     // 3.item数据
-     currentID : '0',
+     currentID : '1',
      currentPage:0,
      teachersData: [],
-     loadingHide:false
+     loadingHide:false,
+     indexPage:1
  },
 
 // 方法： ---------------------------
  onLoad:function(options){
     // 生命周期函数--监听页面加载
-   this.reqData(1,3,3)
+   this.reqData(1,1,1)
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
@@ -52,11 +53,22 @@ Page({
   },
   onPullDownRefresh: function() {
     // 页面相关事件处理函数--监听用户下拉动作
+      // 1.清空数组
+    this.data.teachersData = []
+
+    // 2.重新赋值页码
+    this.data.indexPage = 1
     
+    // 3.请求数据
+    this.reqData(1,this.data.currentID,this.data.currentID)
+
   },
   onReachBottom: function() {
     // 页面上拉触底事件的处理函数
-    
+    this.data.indexPage = this.data.indexPage + 1
+
+    // 2.请求数据
+    this.reqData(this.data.indexPage,this.data.currentID,this.data.currentID)
   },
   onShareAppMessage: function() {
     // 用户点击右上角分享
@@ -70,20 +82,15 @@ Page({
 
 // 3.点击菜单栏
 tapMenuItem:function(e){
-
+ 
    this.setData({
      currentID: e.currentTarget.id,
-     currentPage: e.currentTarget.id
+     currentPage: e.currentTarget.id,
+     indexPage:1,
+     teachersData:[]
     })
-},
 
-// 滑动改变当前页面
-changeCurrentPage:function(e){
- 
-   let id = e.detail.current
-   this.setData({
-     currentID:id
-    })
+    this.reqData(1,e.currentTarget.id,e.currentTarget.id)
 },
 
 
@@ -98,9 +105,9 @@ reqData:function(index,recommendType,teacherType){
 //2.提示框
 var that = this
 
-//   that.setData({
-//    loadingHide:false
-// })
+  that.setData({
+   loadingHide:false
+})
 
 //3. 请求数据
 wx.request({
@@ -110,7 +117,7 @@ wx.request({
      RecommendType: recommendType ,
      TeacherType: teacherType,
      pageIndex: index,
-     pageSize: '10' ,
+     pageSize: '15' ,
      VerSafe: UpperMd5Str
   },
   header: {

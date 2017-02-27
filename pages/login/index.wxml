@@ -1,0 +1,28 @@
+<view class="contain">
+
+<!--头像-->
+<image class="icon" src="../../../image/0713head.png"></image>
+
+<!--输入框-->
+<view class="phone-input-View">
+<text>+86</text>
+<input placeholder="请输入您的手机号" value="{{phoneNum}}" type="number" maxlength="11" focus="true"  bindinput="phoneInputValueChanged"/>
+</view>
+
+<view class="pwd-input-View">
+<text>密码</text>
+<input placeholder="请输入10位数以下密码" value="{{pwd}}" password="true" maxlength="10" focus="true" bindinput="pwdInputValueChanged"/>
+</view>
+
+<!--注册 登录 忘记密码 bgView-->
+<view class="btns-view">
+<button bindtap="registAction">注册</button>
+<button bindtap="forgetPwdAction">忘记密码？</button>
+<button type="warn" bindtap="loginAction">登录</button>
+</view>
+</view>
+
+<!--加载提示-->
+  <loading hidden="{{loadingHide}}">
+        正在登录
+    </loading>

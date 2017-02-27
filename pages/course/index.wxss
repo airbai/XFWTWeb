@@ -27,6 +27,8 @@ border-bottom: 1px solid rgb(245, 245, 245);
 /*3.选中的按钮*/
  .titleView.selectedItem{
      color: red;
+     font-size: 16px;
+   border-bottom: solid 1px red;
  }
 
 /*4.列表view*/

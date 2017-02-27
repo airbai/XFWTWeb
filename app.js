@@ -1,6 +1,5 @@
 //app.js
 App({
-
   
 // 0.全局数据
   globalData:{
@@ -10,12 +9,26 @@ App({
 serverUrl:'http://112.74.128.53:9528/APP_Action.ashx?',
 imageUrl: 'http://112.74.128.53:9997/',
 windowWidth:null,
-windowHeight:null
+windowHeight:null,
+VerSafe: null,
 
-  },
+},
 
-// 1.程序启动完毕
+// 1.模板（工具）
+tip:null,
+network:null,
+md5:null,
+util:null,
+
+
+// 程序启动完毕
   onLaunch:function() {
+ 
+   // 模板加载：
+    this.tip = require('utils/tip.js')
+    this.network = require('utils/network.js')
+    this.md5 = require('utils/md5.js')
+    this.util = require('utils/util.js')
 
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
@@ -30,7 +43,6 @@ windowHeight:null
     wx.getLocation({
   type: 'wgs84',
   success: function(res) {
-
     that.globalData.longitude = res.longitude
       that.globalData.latitude = res.latitude
   }
@@ -43,6 +55,9 @@ wx.getSystemInfo({
       that.globalData.windowHeight = res.windowHeight
   }
 })
+
+// md5加密后的安全码
+ that.globalData.VerSafe = this.network.getUpperMd5Str()
   },
 
 // 2.当小程序启动，或从后台进入前台显示会触发

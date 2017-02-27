@@ -1,0 +1,32 @@
+<view class="contain">
+
+<!--输入框-->
+<view class="phone-input-View">
+<text>+86</text>
+<input placeholder="请输入您的手机号" type="number" maxlength="11" focus="true"  bindinput="phoneInputValueChanged"/>
+</view>
+
+<view class="code-input-View">
+<view class="code-view" bindtap="codeAction">获取验证码</view>
+<input placeholder="请输入您的验证码"  type="number" maxlength="6" focus="true"  bindinput="codeInputValueChanged"/>
+</view>
+
+<view class="pwd-input-View">
+<text>密码</text>
+<input placeholder="请输入10位数以下密码" password="true" maxlength="10" focus="true" bindinput="pwdInputValueChanged"/>
+</view>
+
+<view class="again-pwd-input-View">
+<text>确认密码</text>
+<input placeholder="再次输入密码"  password="true" maxlength="10" focus="true" bindinput="againPwdInputValueChanged"/>
+</view>
+
+<!--注册-->
+<button class="registBtn" type="warn" bindtap="registAction">注册</button>
+
+</view>
+
+<!--加载提示-->
+  <loading hidden="{{loadingHide}}">
+        正在登录
+    </loading>

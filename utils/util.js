@@ -31,12 +31,6 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
-//暴露模板1
-module.exports = {
-  formatTime: formatTime
-}
-
-//暴露模板2
-module.exports = {
-  formatYearMonthDate: formatYearMonthDate
-}
+// 暴露模板
+module.exports.formatTime = formatTime
+exports.formatYearMonthDate = formatYearMonthDate

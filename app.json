@@ -1,11 +1,14 @@
 {
     "pages":[
        
+            "pages/login/index",
+             "pages/login/regist/index",
+        "pages/login/forgetPwd/index",
+            
              "pages/index/index",
              "pages/course/index",
              "pages/msg/index",
              "pages/me/index",
-             "pages/logs/logs",                    
              "pages/index/teachers/index",
              "pages/me/personalPage/index"
              ],

@@ -49,7 +49,7 @@ wx.chooseImage({
     
     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
     that.setData({
-     icon:res.tempFilePaths
+     iconLink:res.tempFilePaths
     })
   }
 })
@@ -108,7 +108,7 @@ wx.request({
 
 wx.hideNavigationBarLoading()
 
-//判断是否相等
+//判断性别是否相等
 if (res.data.value[0].Sex === false ){
 
   that.setData({ girlChecked:true})

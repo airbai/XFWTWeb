@@ -1,0 +1,67 @@
+
+.contain{
+
+display: flex;
+flex-direction: column;
+text-align: center;
+}
+
+/*头像*/
+.icon{
+    width: 80px;
+    height: 80px;
+    /*居中*/
+    margin: 0 auto;
+     margin-top: 200rpx;
+     border-radius: 40px;
+}
+
+/*手机号/密码背景view*/
+.phone-input-View , .pwd-input-View{
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    border-top: solid 0.5px  rgb(245, 245, 245);
+    border-bottom: solid 0.5px  rgb(245, 245, 245);
+}
+
+/*phone背景view*/
+.phone-input-View{
+
+    margin: 30px 20px 10px 20px;
+}
+
+/*pwd背景view*/
+.pwd-input-View{
+
+    margin: 0 20px 0 20px;
+}
+
+/*+86和“密码”*/
+.phone-input-View text , .pwd-input-View text{
+     
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+     border-right: solid 0.5px  rgb(245, 245, 245);
+}
+
+/*手机号和密码input*/
+.phone-input-View input , .pwd-input-View input{
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    /*调整placeholder左边距*/
+    padding-left:20px;
+    font-size: 14px;
+}
+
+/*注册、忘记密码、登录 view*/
+.btns-view{
+    margin-top: 40px;
+}
+
+.btns-view button{
+    margin: 8px 10px 0 10px;
+    
+}

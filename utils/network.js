@@ -28,6 +28,5 @@ function formatNumber(n) {
 }
 
 //3. 暴露模板
-module.exports = {
-  getUpperMd5Str: getUpperMd5Str
-}
+module.exports.getUpperMd5Str = getUpperMd5Str
+
