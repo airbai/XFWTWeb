@@ -1,27 +1,28 @@
 Page({
   data:{
-  phoneNum : null,
-  pwd : null,
+  phoneNum : '',
+  pwd : '',
   loadingHide : true
   },
+   
   onLoad:function(options){
     // 生命周期函数--监听页面加载
-
+  if(typeof(getApp().util.getLoginInfo()) == "undefined"){
+   return
+  }
     // 获取缓存里的phone、pwd
-    var that = this
- wx.getStorage({
-   key: 'userLoginInfo',
-   success: function(res){
+      var that = this
        that.setData({
-       phoneNum : res.data.phone ,
-       pwd : res.data.pwd 
-       })
-   }
+       phoneNum : getApp().util.getLoginInfo().phone ,
+       pwd : getApp().util.getLoginInfo().pwd 
  })
+
+// 自动登录
+that.loginAction()
+
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
-
   },
   onShow:function(){
     // 生命周期函数--监听页面显示
@@ -86,12 +87,12 @@ let md5pwd = getApp().md5.hexMD5(this.data.pwd);
 
 //3. 请求数据
 wx.request({
-  url: getApp().globalData.serverUrl,
+  url: getApp().serverUrl,
   data: {
      action: 'logins' ,
      LoginName:that.data.phoneNum ,
      PassWords:md5pwd,
-     VerSafe: getApp().globalData.VerSafe
+     VerSafe: getApp().VerSafe
   },
   header: {
       'content-type': 'application/json'
@@ -102,6 +103,12 @@ wx.request({
   that.setData({
    loadingHide:true
 })
+
+// 请求失败
+if(res.data.signIOS == 0){
+ getApp().tip.showError(res.data.value) 
+  return
+}
 
 // 获取用户数据
 let arr = res.data.value.split(","); //字符分割 
@@ -133,7 +140,6 @@ wx.switchTab({
  
   },
  fail: function(res) {
- getApp().tip.showError("登录失败 ￣へ￣") 
   }
 })
 
@@ -149,5 +155,7 @@ forgetPwdAction:function (){
   wx.navigateTo({
     url: 'forgetPwd/index'
   })
-}
+},
+
+
 })

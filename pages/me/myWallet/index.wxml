@@ -1,0 +1,22 @@
+<view class="contain">
+
+<view class="moneyView">
+<view class="walletView">
+<image src="../../../image/wallet.png"></image>
+<text>余额44.3元</text>
+</view>
+<view  class="hongbaoView">
+<image src="../../../image/hongbao.png"></image>
+<text>红包99.3元</text>
+</view>
+</view>
+
+<view class="chongzhiView">
+<text>充值</text>
+ <image src="../../../image/0106arrow3x.png"></image>
+</view>
+<view class="tixianView">
+<text>提现</text>
+ <image src="../../../image/0106arrow3x.png"></image>
+</view>
+ </view>

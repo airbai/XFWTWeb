@@ -5,15 +5,21 @@ Page({
      pwd: '',
      againPwd: '',
      loadingHide: true,
-     receiveCode: ''
+     receiveCode: '',
+      second: '获取验证码',
+      unit: '',
+      bgc:'red',
   },
+
+ 
+
   onLoad:function(options){
     // 生命周期函数--监听页面加载
    
   },
   onReady:function(){
     // 生命周期函数--监听页面初次渲染完成
-   
+
   },
   onShow:function(){
     // 生命周期函数--监听页面显示
@@ -60,26 +66,49 @@ Page({
      this.data.againPwd = e.detail.value
   },
   codeAction: function() {
+  // 获取验证码事件：
 
 var that = this
-    // 获取验证码事件：
+
 if (that.data.phoneNum.length != 11){
-   getApp().tip.showError("请输入有效手机号") 
+   getApp().tip.showError("请输入有效手机") 
 return
 }
 
     wx.request({ // 获取验证码api
-  url: getApp().globalData.serverUrl,
+  url: getApp().serverUrl,
   data: {
     action: 'sendvers',
      Mobile: that.data.phoneNum ,
      SMS_Type: '1',
-     VerSafe: getApp().globalData.VerSafe
+     VerSafe: getApp().VerSafe
   },
   header: {
       'content-type': 'application/json'
   },
   success: function(res) {
+
+// 请求失败
+if(res.data.signIOS == 0){
+ getApp().tip.showError(res.data.msg) 
+  return
+}
+
+// 不能重复点击
+if (that.data.second != "获取验证码"){
+  return
+}
+
+ // 设置起始时间：
+   that.setData({
+        second:'60',
+        unit:'秒',
+        bgc:'gray'
+      })
+
+ // 倒计时开始：
+ that.countdown(that); 
+
 
 getApp().tip.showError("已发送，请查收") 
 
@@ -96,9 +125,11 @@ that.setData({
 
   },
     registAction: function(){
-
+ //     注册事件：
+ 
       var that = this
-    //     注册事件：
+
+   
     if (!that.data.phoneNum ||  !that.data.code || !that.data.pwd || !that.data.againPwd || that.data.phoneNum.length != 11 || isNaN(that.data.phoneNum) ){
  getApp().tip.showError("请检查账号或密码")  
 return
@@ -111,11 +142,7 @@ return
 
 if(that.data.pwd  != that.data.againPwd ){
   // 2次密码不对
-wx.showToast({
-  title: '两次输入密码对不上',
-  icon: 'loading',
-  duration: 2000
-})
+  getApp().tip.showError("两次输入密码对不上")
 return
 }
 
@@ -137,14 +164,14 @@ let md5pwd = getApp().md5.hexMD5(this.data.pwd)
 
 //3. 请求数据
 wx.request({
-  url: getApp().globalData.serverUrl,
+  url: getApp().serverUrl,
   data: {
      action: 'userregs' ,
      LoginName: that.data.phoneNum ,
      PassWord: md5pwd,
      Mobile: that.data.phoneNum,
      UserType: '1',
-     VerSafe: getApp().globalData.VerSafe
+     VerSafe: getApp().VerSafe
   },
   header: {
       'content-type': 'application/json'
@@ -156,6 +183,12 @@ wx.request({
    loadingHide:true
 })
 
+// 请求失败
+if(res.data.signIOS == 0){
+ getApp().tip.showError(res.data.value) 
+  return
+}
+
 // 跳转到首页
 wx.switchTab({
   url: '../../index/index'
@@ -163,10 +196,31 @@ wx.switchTab({
  
   },
  fail: function(res) {
-
- getApp().tip.showError("注册失败 ￣へ￣") 
   }
 })
 
 },
+
+// 倒计时：
+countdown: function (that) {  
+
+ if (that.data.second == 0) {  
+  that.setData({  
+   second: "获取验证码",
+    unit:'',
+    bgc:'red'
+  })
+  return   
+ }  
+ var time = setTimeout(function(){  
+  that.setData({  
+   second: that.data.second - 1,
+  })  
+  that.countdown(that) 
+ }  
+ ,1000)  
+}  
+  
+
+
 })

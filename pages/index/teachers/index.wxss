@@ -1,4 +1,7 @@
-
+button{
+  background: white;
+  border-bottom: solid 0xp white;
+}
 /*课程cell*/
 .item{
  background: white;
@@ -8,10 +11,6 @@
    padding: 8px;
    border-top: 0.5px solid rgb(245, 245, 245);
  
-   /*y轴对齐方式*/
-  /*align-items: center; */
-  /*x轴对齐方式*/
-  /*justify-content: space-between;*/ 
 }
 
 /*图片背景View*/
@@ -96,4 +95,14 @@ margin-right: 8px;
  
   font-size: 13px;
   color: burlywood;
+}
+
+
+/*无数据图片*/
+.nodata-img{
+
+  width: 120px;
+  height: 120px;
+margin: 400rpx 0 0 240rpx;
+
 }

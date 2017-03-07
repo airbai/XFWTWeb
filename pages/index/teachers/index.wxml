@@ -1,10 +1,9 @@
 
 <view class="contain"> 
-
-<block wx:for-items="{{teachersData}}"> 
+ 
 
     <!--课程cell-->
-     <view class="item" >
+     <view wx:for="{{teachersData}}" class="item" bindtap="tappedCellAction" data-index="{{index}}">
 
 <!--图片-->
       <view  class="item-left"> 
@@ -26,11 +25,17 @@
     
      </view>
 
-  </block>
+
 
   </view>
+
 
  <!--加载提示-->
   <loading hidden="{{loadingHide}}">
         加载中...
     </loading>
+
+   <!--无数据图-->
+     <image wx:if="{{nodataImgShow}}" class = "nodata-img" src="../../../image/nodata.png"></image>
+  
+

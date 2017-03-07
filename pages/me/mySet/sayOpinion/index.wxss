@@ -1,0 +1,11 @@
+
+textarea{
+    margin: 20px 20px 0 10px;
+    border: solid 0.5px red;
+    font-size: 14px;
+    padding-top: 8px;
+}
+
+button{
+    margin: 40px 10px 0 10px;
+}

@@ -12,14 +12,14 @@
 </view>
 
 <!--表格-->
- <block wx:for-items="{{items}}">   
-<view class="item">
+
+<view class="item" wx:for="{{items}}" id="{{index}}" bindtap="itemTap">
  <image class="icon" src="{{item.icon}}"></image>
  <label>{{item.text}}</label>
   <image class="arrow" src="../../image/0106arrow3x.png"></image>
 
 </view>
- </block>
+
 
 </scroll-view>
 

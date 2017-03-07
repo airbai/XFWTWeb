@@ -1,0 +1,47 @@
+
+
+/*手机号/原密码/新密码背景view*/
+.phone-input-View , .beforePwd-input-View, .pwd-input-View {
+    margin: 0 20px 10px 20px;
+    height: 40px;
+    display: flex;
+    flex-direction: row;
+    border-top: solid 0.5px  rgb(245, 245, 245);
+    border-bottom: solid 0.5px  rgb(245, 245, 245);
+}
+
+/*手机号view*/
+.phone-input-View{
+    margin-top: 60rpx;
+}
+
+/*手机号置灰*/
+.phone-input-View input{
+    color: gray;
+}
+
+
+/*所有文本*/
+.contain text {
+     
+    width: 80px;
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+     border-right: solid 0.5px  rgb(245, 245, 245);
+}
+
+/*所有input*/
+input{
+    height: 40px;
+    line-height: 40px;
+    text-align: left;
+    /*调整placeholder左边距*/
+    padding-left:15px;
+    font-size: 14px;
+}
+
+/*注册btn*/
+.sureBtn{
+    margin: 40px 10px 0 10px;
+}

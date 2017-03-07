@@ -17,6 +17,7 @@ return wx.showToast({
 })
 }
 
+
 // 3.暴露模板
 module.exports.showSuccess = showSuccess
 exports.showError = showError

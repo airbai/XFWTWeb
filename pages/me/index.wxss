@@ -41,14 +41,14 @@ border-radius:50%;
 
 /*文字*/
 .item label{
-    margin: 5px 0 0 10px; 
+    /*margin: 5px 0 0 10px; */
     font-size: 15px;
 
     /*撑开label两边部分的距离*/
     flex: 1;
 
     /*垂直居中*/
-    margin: auto; 
+    margin: 0 auto; 
 }
 
 /*箭头*/

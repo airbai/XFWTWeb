@@ -1,0 +1,56 @@
+text{
+    font-size: 13px;
+}
+/*第一栏钱包view*/
+.moneyView{
+    display: flex;
+    flex-direction: row;
+    height: 140px;
+    border-bottom: solid 0.5px rgb(245, 245, 245);
+}
+
+/*余额view*/
+.walletView{ 
+ flex:1;
+ text-align: center;
+}
+
+/*红包view*/
+.hongbaoView{ 
+flex:1;
+ text-align: center;
+}
+
+/*图片*/
+.moneyView image{
+    width: 30px;
+    height: 30px;
+    display: block;
+     margin: 40px auto 10px auto;
+}
+
+
+/*充值提现view*/
+.chongzhiView ,.tixianView{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;/*两端对齐*/
+    align-items: center;    /*居中对齐*/
+    border-bottom: solid 0.5px rgb(245, 245, 245);
+}
+
+/*充值提现文字*/
+.chongzhiView text,.tixianView text{
+    margin-left: 10px;
+}
+
+/*箭头*/
+.chongzhiView image,.tixianView image{
+   width: 8px;
+    height: 9px;
+   margin-right: 10px;
+}
+
+
+

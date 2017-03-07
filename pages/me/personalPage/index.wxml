@@ -17,23 +17,23 @@
 <text>手机号</text>  <input placeholder="你的手机号是？.." value="{{jsonData.Mobile}}" disabled="false"/>
 </view>
 
-<!--省份-->
-<view class="provinceView">
-<text>省份</text>  <input placeholder="你的省份是？？.." value="{{jsonData.Province}}"/>
+<!--学历-->
+<view class="degreeView">
+<text>学历</text>  <input placeholder="你的学历是？？.." value="{{jsonData.Degree}}"/>
 </view>
 
 <!--性别-->
 <view class="sexView">
 <text>性别</text> 
 
-<checkbox-group bindchange="checkboxChange">
-  <label class="boyCheckbox">
-    <checkbox value="boy" checked="{{boyChecked}}"/>男生
+<radio-group class="radio-group" bindchange="radioChange">
+  <label>
+    <radio checked="boyChecked"/>男生
   </label>
-  <label class="girlCheckbox">
-    <checkbox value="girl"  checked="{{girlChecked}}"/>女生
+  <label>
+    <radio checked="girlChecked"/>女生
   </label>
-</checkbox-group>
+</radio-group>
 
 </view>
 

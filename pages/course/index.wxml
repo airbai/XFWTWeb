@@ -11,26 +11,26 @@
 <scroll-view>
 
  <!--列表背景View-->
- <view class="item" wx:for="{{teachersData}}">
+ <view class="cell" wx:for="{{teachersData}}">
 
  <!--item上部分-->
-<view class="item-top">
- <view class="item-top-left">
+<view class="cell-top">
+ <view class="cell-top-left">
    <image src="http://112.74.128.53:9997/{{item.PhoneLink}}"></image>
  </view>
-<view class="item-top-right">
+<view class="cell-top-right">
    <text class="titleText">{{item.CourseTitle}}</text> 
     <text class="schoolText">{{item.Degree}}</text>
     <text class="nameText">{{item.TeacherName}}</text>
     <text class="classText">可售课程数</text>
      <text class="priceText">{{item.CourseCount}}个</text> 
     <text class="timeText">距离</text> 
-    <text class="countText">{{item.distance}}m</text>
+    <text class="countText">{{item.distance}} m</text>
 </view>
 </view>
 
 <!--item下部分-->
-<view class="item-bottom">
+<view class="cell-bottom">
    <text class="orderText">被查看次数:{{item.LookCount}}</text> 
    <text class="totalPriceText">￥{{item.MinPrice}}/小时</text>
  </view>
@@ -44,3 +44,6 @@
   <loading hidden="{{loadingHide}}">
         加载中...
     </loading>
+
+   <!--无数据图-->
+     <image wx:if="{{nodataImgShow}}" class = "nodata-img" src="../../../image/nodata.png"></image>

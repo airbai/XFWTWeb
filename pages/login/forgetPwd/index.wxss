@@ -1,12 +1,7 @@
-/*.contain{
 
-display: flex;
-flex-direction: column;
-text-align: center;
-}*/
 
 /*手机号/验证码/密码背景view*/
-.phone-input-View , .code-input-View , .pwd-input-View , .again-pwd-input-View {
+.phone-input-View , .code-input-View , .pwd-input-View {
     margin: 0 20px 10px 20px;
     height: 40px;
     display: flex;
@@ -21,7 +16,7 @@ text-align: center;
 }
 
 
-/*+86和“密码”*/
+/*所有文本*/
 .contain text {
      
     width: 80px;
@@ -55,5 +50,5 @@ input{
 
 /*注册btn*/
 .sureBtn{
-    margin: 40px 20px 0 20px;
+    margin: 40px 10px 0 10px;
 }

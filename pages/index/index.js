@@ -1,3 +1,4 @@
+var index = 1 
 
 Page({
 
@@ -10,10 +11,6 @@ Page({
       '../../image/home_banner3.png'
     ],
 
-//2. 轮播配置
-    autoplay:true,
-    interval: 3000,
-    duration: 1200,
   
   // 3.导航栏
   navs: [
@@ -39,9 +36,7 @@ Page({
 
  
         teachersData:[ ],
-        loadingHide:false,
-        index: 1 ,
-
+        loadingHide:false
   },
 
 
@@ -74,17 +69,17 @@ Page({
     this.data.teachersData = []
 
 // 2.重新赋值页码
- this.data.index = 1
+   index = 1
     
     // 3.请求数据
   this.reqData(1)
   },
   onReachBottom: function() {
     // 页面上拉触底事件的处理函数
-       this.data.index = this.data.index + 1
+       index = index + 1
 
     // 2.请求数据
-    this.reqData(this.data.index)
+    this.reqData(index)
   },
   onShareAppMessage: function() {
     // 用户点击右上角分享
@@ -98,11 +93,6 @@ Page({
   // func:请求数据：
 reqData:function(index){
 
-//1.调用网络模板获取md5加密后的字符串
- let networkTemplate = require('../../utils/network.js'); 
-let UpperMd5Str = networkTemplate.getUpperMd5Str()
-
-
 //2.提示框
 let that = this
   that.setData({
@@ -111,20 +101,34 @@ let that = this
 
 //3. 请求数据
 wx.request({
-  url: getApp().globalData.serverUrl,
+  url: getApp().serverUrl,
   data: {
      action: 'SearchNearTeachers' ,
-     longitude: getApp().globalData.longitude ,
-     latitude:  getApp().globalData.latitude ,
-     distance: '1000' ,
+     longitude: getApp().longitude ,
+     latitude:  getApp().latitude ,
+     distance: '10000000' ,
      pageIndex: index,
      pageSize: '15' ,
-     VerSafe: UpperMd5Str
+     VerSafe: getApp().VerSafe
   },
   header: {
       'content-type': 'application/json'
   },
   success: function(res) {
+
+    // 请求失败
+if(res.data.signIOS == 0){
+ T.showError(res.data.value) 
+  return
+}
+
+// 暂无更多数据
+if(res.data.value.length == 0){
+     that.setData({
+   loadingHide:true
+}) 
+   T.showError("暂无更多数据")  
+}
 
  //1.追加数组元素：
   Array.prototype.push.apply(that.data.teachersData, res.data.value);

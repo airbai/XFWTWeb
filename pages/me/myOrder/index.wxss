@@ -1,0 +1,170 @@
+
+text{
+    color: darkgray;
+    font-size: 12px;
+}
+
+
+/*1.菜单栏*/
+.memuView{
+
+height: 50px; 
+display: flex;
+flex-direction: row;
+text-align: center;
+border-bottom: 1px solid rgb(245, 245, 245);
+}
+
+/*2.菜单栏按钮*/
+.titleView{
+  
+    flex: 1;    /*同一行的控件平分父控件的宽度*/
+    font-size: 14px;
+    line-height: 50px;
+    color: darkgray;
+}
+
+/*3.选中的按钮*/
+ .titleView.selectedBox{
+     color: red;
+     font-size: 16px;
+   border-bottom: solid 1px red;
+ }
+
+/*4.列表view*/
+.cell{
+
+ display: flex;
+ flex-direction: column;
+ border-bottom: 0.5px solid rgb(245, 245, 245);
+ padding: 8px;
+}
+
+/*5.上部分*/
+.cell-top{
+    display: flex;
+    flex-direction: row;
+}
+
+/*6.上部分左边*/
+.cell-top-left{
+    width: 80px;
+    height: 80px;
+}
+
+/*5.列表图片*/
+.cell image{
+width: 100%;
+height: 100%;
+}
+
+/*右边view*/
+.cell-top-right{
+    margin:5px 0 0 8px;
+    flex: 1;
+    position: relative;
+}
+
+
+/*标题*/
+.titleText{
+    display: block;
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    font-size: 15px;
+    color: black;
+
+/*强制不换行*/
+  white-space:nowrap;
+/*超出一行文字自动隐藏*/
+ overflow:hidden; 
+ /*文字隐藏后添加省略号*/
+ text-overflow:ellipsis;
+ 
+}
+
+/*学校*/
+.schoolText{
+    display: inline-block;
+     position: absolute;
+    left: 0;
+    right: 70;
+    top: 25px;
+
+/*超出一行文字自动隐藏*/
+ overflow:hidden; 
+ /*文字隐藏后添加省略号*/
+ text-overflow:ellipsis;
+ /*强制不换行*/
+  white-space:nowrap;
+}
+
+/*名字*/
+.nameText{
+   position: absolute;
+    right: 0;
+    top: 25px;
+}
+
+/*课酬*/
+.classText{
+   position: absolute;
+    left: 0;
+    right: 100;
+    top: 46px;  
+}
+
+/*单价*/
+.priceText{
+ position: absolute;
+    right: 0;
+    top: 46px;
+}
+
+/*课时*/
+.timeText{
+    position: absolute;
+    left: 0;
+    right: 100;
+    top: 66px;   
+}
+
+/*小时数*/
+.countText{
+position: absolute;
+    right: 0;
+    top: 66px;
+}
+
+/*下部分*/
+.cell-bottom{
+    margin-top: 12px;
+    position: relative;
+}
+
+/*订单号*/
+.orderText{
+   position: absolute;
+    left: 0;
+    right: 100;
+    top: 0;  
+}
+
+/*总价格*/
+.totalPriceText{
+    float: right;
+ color: burlywood;
+ font-size: 14px;
+}
+
+
+/*无数据图片*/
+.nodata-img{
+
+  width: 120px;
+  height: 120px;
+margin: 400rpx 0 0 240rpx;
+
+}

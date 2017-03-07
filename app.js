@@ -1,34 +1,27 @@
+
+
 //app.js
 App({
   
 // 0.全局数据
-  globalData:{
-    userInfo:null,
-    longitude:null,
-    latitude:null,
+userInfo:null,
+longitude:null,
+latitude:null,
 serverUrl:'http://112.74.128.53:9528/APP_Action.ashx?',
 imageUrl: 'http://112.74.128.53:9997/',
 windowWidth:null,
 windowHeight:null,
 VerSafe: null,
 
-},
-
 // 1.模板（工具）
-tip:null,
-network:null,
-md5:null,
-util:null,
+tip:require('utils/tip.js'),
+network:require('utils/network.js'),
+md5:require('utils/md5.js'),
+util:require('utils/util.js'),
 
 
 // 程序启动完毕
   onLaunch:function() {
- 
-   // 模板加载：
-    this.tip = require('utils/tip.js')
-    this.network = require('utils/network.js')
-    this.md5 = require('utils/md5.js')
-    this.util = require('utils/util.js')
 
     //调用API从本地缓存中获取数据
     var logs = wx.getStorageSync('logs') || []
@@ -43,21 +36,21 @@ util:null,
     wx.getLocation({
   type: 'wgs84',
   success: function(res) {
-    that.globalData.longitude = res.longitude
-      that.globalData.latitude = res.latitude
+    that.longitude = res.longitude
+      that.latitude = res.latitude
   }
 })
 
 // 获取用户系统信息：手机宽高
 wx.getSystemInfo({
   success: function(res) {
-     that.globalData.windowWidth = res.windowWidth
-      that.globalData.windowHeight = res.windowHeight
+     that.windowWidth = res.windowWidth
+      that.windowHeight = res.windowHeight
   }
 })
 
 // md5加密后的安全码
- that.globalData.VerSafe = this.network.getUpperMd5Str()
+ that.VerSafe = this.network.getUpperMd5Str()
   },
 
 // 2.当小程序启动，或从后台进入前台显示会触发
@@ -75,9 +68,9 @@ wx.getSystemInfo({
 
     var that = this
 
-    if(this.globalData.userInfo){
+    if(this.userInfo){
 
-      typeof cb == "function" && cb(this.globalData.userInfo)
+      typeof cb == "function" && cb(this.userInfo)
 
     }else{
       //调用登录接口
@@ -87,8 +80,8 @@ wx.getSystemInfo({
           wx.getUserInfo({
             success: function (res) {
 
-        that.globalData.userInfo = res.userInfo
-              typeof cb == "function" && cb(that.globalData.userInfo)
+        that.userInfo = res.userInfo
+              typeof cb == "function" && cb(that.userInfo)
             }
           })
         }

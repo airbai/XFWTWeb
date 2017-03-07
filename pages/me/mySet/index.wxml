@@ -1,0 +1,12 @@
+<view class="contain">
+
+<view class="cell" wx:for="{{cells}}" id="{{index}}" bindtap="cellTapAction">
+ <text>{{item.text}}</text>
+  <image class="arrow" src="../../../image/0106arrow3x.png"></image>
+
+</view>
+
+
+<button type="warn" bindtap="loginOutAction">退出登录</button>
+
+</view>

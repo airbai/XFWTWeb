@@ -1,9 +1,10 @@
+var index = 1
 Page({
 
   data:{
         teachersData:[ ],
         loadingHide:false,
-        index: 1 
+        nodataImgShow:false
   },
 
   
@@ -40,7 +41,7 @@ Page({
     this.data.teachersData = []
 
     // 2.重新赋值页码
-    this.data.index = 1
+    index = 1
 
     //  3.请求数据：
     this.reqData(1,1,1)
@@ -48,10 +49,10 @@ Page({
   onReachBottom: function() {
     // 页面上拉触底事件的处理函数
      
-    this.data.index = this.data.index + 1
+    index = index + 1
 
     // 2.请求数据
-    this.reqData(this.data.index,1,1)
+    this.reqData(index,1,1)
   },
   onShareAppMessage: function() {
     // 用户点击右上角分享
@@ -65,41 +66,58 @@ Page({
 // func:请求数据：
 reqData:function(index,recommendType,teacherType){
 
-//1.调用网络模板获取md5加密后的字符串
- var networkTemplate = require('../../../utils/network.js'); 
- var UpperMd5Str = networkTemplate.getUpperMd5Str()
-
-
-//2.提示框
+//提示框
 var that = this
 
   that.setData({
    loadingHide:false
+
 })
 
 //3. 请求数据
 wx.request({
-  url: getApp().globalData.serverUrl,
+  url: getApp().serverUrl,
   data: {
      action: 'GetSpecialTeachers' ,
      RecommendType: recommendType ,
      TeacherType: teacherType,
      pageIndex: index,
      pageSize: '15' ,
-     VerSafe: UpperMd5Str
+     VerSafe: getApp().VerSafe
   },
   header: {
       'content-type': 'application/json'
   },
   success: function(res) {
 
+    // 请求失败
+if(res.data.signIOS == 0){
+
+ getApp().tip.showError(res.data.value) 
+ that.setData({
+   nodataImgShow:true
+ })
+  return
+}
+
+// 暂无更多数据
+if(res.data.value.length == 0){
+     that.setData({
+   loadingHide:true
+}) 
+   getApp().tip.showError("暂无更多数据")  
+}
+
      //1.追加数组元素：
   Array.prototype.push.apply(that.data.teachersData, res.data.value);
+ 
+ 
 
   //2. 绑定数据
   that.setData({
    teachersData:that.data.teachersData,
-   loadingHide:true
+   loadingHide:true,
+   nodataImgShow:(that.data.teachersData.length > 0) ? false:true
 })  
   },
 
@@ -108,6 +126,23 @@ wx.request({
   }
 })
 
+},
+
+tappedCellAction:function(e){
+  // func:点击cell事件
+  var that = this
+ let teacherData = that.data.teachersData[e.currentTarget.dataset.index]
+ let PhoneLink = 'PhoneLink=' + teacherData.PhoneLink +'&'
+ let TeacherName = 'TeacherName=' + teacherData.TeacherName +'&'
+ let TeachFeature = 'TeachFeature=' + teacherData.TeachFeature +'&'
+ let StuCount = 'StuCount=' + teacherData.StuCount +'&'
+ let CourseCount = 'CourseCount=' + teacherData.CourseCount +'&'
+ let CommentCount = 'CommentCount=' + teacherData.CommentCount +'&'
+ let TeacherID = 'TeacherID=' + teacherData.TeacherID
+ 
+ wx.navigateTo({
+   url: 'teacherPage/index?'+ PhoneLink+TeacherName+TeachFeature+StuCount+CourseCount+CommentCount+TeacherID
+ })
 }
 
 

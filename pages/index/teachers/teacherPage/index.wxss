@@ -1,0 +1,181 @@
+/*.contain{
+    background: green;
+}*/
+
+.header{
+    height: 460rpx;
+    background: red;
+    text-align: center;
+}
+
+/*头像*/
+.icon{
+
+width: 80px;
+height: 80px;
+margin-top: 70rpx;
+border-radius: 40px;
+}
+
+/*名字*/
+.TeacherName{
+
+display: block;
+margin:10px 0 5px 0;
+color: white;
+ font-size: 15px;
+}
+
+/*特点*/
+.TeachFeature{
+ 
+   color: white;
+   font-size: 12px; 
+   /*超出一行文字自动隐藏*/
+ overflow:hidden; 
+ /*文字隐藏后添加省略号*/
+ text-overflow:ellipsis;
+ /*强制不换行*/
+  white-space:nowrap;
+}
+
+/*个数*/
+.countView{
+    margin-top: 10px;
+    font-size: 11px;
+    color: white;
+}
+
+/*课程数*/
+.courseCount{
+margin: 0 15px;
+}
+
+
+
+/*1.菜单栏*/
+.memuView{
+
+height: 50px; 
+display: flex;
+flex-direction: row;
+text-align: center;
+border-bottom: 1px solid rgb(245, 245, 245);
+background: white;
+
+}
+
+/*2.菜单栏按钮*/
+.titleView{
+  
+    flex: 1;    /*同一行的控件平分父控件的宽度*/
+    font-size: 14px;
+    line-height: 50px;
+    color: darkgray;
+}
+
+/*3.选中的按钮*/
+ .titleView.selectedBox{
+     color: red;
+     font-size: 16px;
+   border-bottom: solid 1px red;
+ }
+
+
+ /*底部栏*/
+ .footer{
+     position: fixed;
+     height: 50px;
+     background: yellow;
+     left: 0;
+     right: 0;
+     bottom: 0;
+
+ }
+
+/*中间view*/
+ .courseMiddleCell{
+     position: relative;
+     background: white;
+     height: 40px;
+     line-height: 40px;
+     border-bottom: solid 0.5px rgb(245, 245, 245);
+ }
+
+/*详情*/
+ .detail{
+  position: absolute;
+  top: 5px;
+  right: 8px;
+  width: 50px;
+  height: 30px;
+  line-height: 30px;
+ font-size: 11px;
+ background: red;
+ color: white;
+ text-align: center;
+ border-radius: 5px;
+ }
+
+/*价格*/
+ .price{
+position: absolute;
+top: 0;
+right: 65px;
+ width: 80px;
+height: 40px;
+ font-size: 13px;
+ color: sandybrown;
+ }
+
+ /*科目*/
+ .subject{
+position: absolute;
+top: 0;
+left: 8px;
+right: 150px;
+height: 40px;  
+ font-size: 13px; 
+ }
+
+/*中间view*/
+.middle{
+    padding-bottom: 50px;
+}
+/*所有cell*/
+ .introCell{
+
+     border-bottom: solid 0.5px rgb(245, 245, 245);
+ }
+
+/*cell顶部*/
+.cellTop{
+    display: flex;
+    flex-direction: row;
+}
+ /*图标*/
+ .cellTop image{
+     
+     width: 20px;
+     height: 20px;
+     margin: 8px 10px 8px 8px;
+ }
+
+ /*基本资料 自我介绍 授课范围 教育背景 工作经历*/
+ .introCell label{
+ 
+   width: 100px;
+   height: 20px;
+   line-height: 20px;
+   margin: 8px 0 8px 0;
+   color: red;
+   font-size: 14px;   
+ }
+
+ /*所有灰色的text*/
+ .introCell text{
+      display: block;
+    margin: 0 5px 8px 38px;
+   color: darkgray;
+   font-size: 12px;
+ }

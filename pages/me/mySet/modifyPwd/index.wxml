@@ -1,0 +1,27 @@
+<view class="contain">
+
+<!--输入框-->
+<view class="phone-input-View">
+<text>+86</text>
+<input disabled="true" value="{{phoneNum}}" bindinput="phoneInputValueChanged"/>
+</view>
+
+<view class="beforePwd-input-View">
+<text>原密码</text>
+<input placeholder="输入10位数以下原密码" password="true" maxlength="10" focus="true" bindinput="beforePwdInputValueChanged"/>
+</view>
+
+<view class="pwd-input-View">
+<text>新密码</text>
+<input placeholder="输入10位数以下新密码" password="true" maxlength="10" focus="true" bindinput="pwdInputValueChanged"/>
+</view>
+
+<!--确认-->
+<button class="sureBtn" type="warn" bindtap="sureAction">确认</button>
+
+</view>
+
+<!--加载提示-->
+  <!--<loading hidden="{{loadingHide}}">
+        正在登录
+    </loading>-->

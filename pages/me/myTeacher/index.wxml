@@ -1,0 +1,38 @@
+<view class ='contain'> 
+
+
+ <!--2.列表View-->
+<scroll-view>
+
+ <!--列表背景View-->
+ <view class="cell" wx:for="{{teachersData}}">
+
+ <!--item上部分-->
+<view class="cell-top">
+ <view class="cell-top-left">
+   <image src="http://112.74.128.53:9997/{{item.PhoneLink}}"></image>
+ </view>
+<view class="cell-top-right">
+   <text class="titleText">{{item.TeacherName}}</text> 
+    <text class="telText">Tel: {{item.Mobile}}</text>
+    <view class="phoneView" bindtap="phoneAction" data-phonenum="{{item.Mobile}}">
+    <image src="../../../image/phone.png"></image>
+    </view>
+    <text class="profileText">{{item.Profile}}</text>
+
+</view>
+</view>
+
+ </view>
+
+</scroll-view> 
+
+  </view>
+
+   <!--加载提示-->
+  <loading hidden="{{loadingHide}}">
+        加载中...
+    </loading>
+
+   <!--无数据图-->
+     <image wx:if="{{nodataImgShow}}" class = "nodata-img" src="../../../image/nodata.png"></image>

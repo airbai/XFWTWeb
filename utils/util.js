@@ -31,6 +31,22 @@ function formatNumber(n) {
   return n[1] ? n : '0' + n
 }
 
+
+// function：从缓存中获取用户登录信息
+function getLoginInfo() {
+try {
+  var value = wx.getStorageSync('userLoginInfo')
+  if (value) {
+     return value
+  }
+} catch (e) {
+  console.log(e)
+ }
+}
+
+
 // 暴露模板
 module.exports.formatTime = formatTime
 exports.formatYearMonthDate = formatYearMonthDate
+exports.getLoginInfo = getLoginInfo
+

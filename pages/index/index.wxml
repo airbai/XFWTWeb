@@ -4,24 +4,22 @@
 
 <!--轮播图-->
 <swiper class="home-swiper" indicator-dots="true"
-                autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
-            <block wx:for-items="{{imgUrls}}">
-                <swiper-item>
+                autoplay="true" interval="3000" duration="1200">
+            
+                <swiper-item wx:for="{{imgUrls}}">
                     <image src="{{item}}" class="slide-image"/>
                 </swiper-item>
-            </block>
+          
         </swiper>
 
 
         <!--标题分类-->
     <view class="nav">
-
-    <block wx:for-items="{{navs}}"> 
-    <view class="boxView" id="{{item.id}}" data-type="{{item.text}}" bindtap="clickedBoxView"> 
+ 
+    <view class="boxView" wx:for="{{navs}}" id="{{item.id}}" data-type="{{item.text}}" bindtap="clickedBoxView"> 
       <image src="{{item.image}}"/>
       <text>{{item.text}}</text>
     </view>
-    </block>
 
     </view>
 
@@ -30,12 +28,10 @@
    <text class="courseText">推荐课程</text> 
    <text class="desText">学霸是怎样炼成的</text> 
     </view>
-
-
-  <block wx:for-items="{{teachersData}}"> 
+ 
 
     <!--课程cell-->
-     <view class="item" >
+     <view wx:for="{{teachersData}}" class="item" >
 
 <!--图片-->
       <view  class="item-left"> 
@@ -44,22 +40,15 @@
 
 <!--文字-->
       <view class="item-right">
-    
       <text class="titleText">{{item.CourseTitle}}</text> 
-     
        <text class="nameText">{{item.TeacherName}}</text>   
-      
       <text class="areaText">{{item.TeacherArea}}</text> 
        <text class="priceText">￥{{item.MinPrice}}/小时</text> 
     
        </view> 
     
      </view>
-
-  </block>
 </view>
 
  <!--加载提示-->
-  <loading hidden="{{loadingHide}}">
-        加载中...
-    </loading>
+  <loading hidden="{{loadingHide}}"> 加载中...</loading>

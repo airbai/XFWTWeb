@@ -2,6 +2,9 @@
 //  不要在 onLaunch 的时候调用 getCurrentPage()此时 page 还没有生成。 
 // getCurrentPage是获取当前页面的实例对象。
 
+var indexPage = 1
+var  currentPage = 0
+var app = getApp()
 Page({
 
     data:{
@@ -24,10 +27,9 @@ Page({
 
     // 3.item数据
      currentID : '1',
-     currentPage:0,
      teachersData: [],
      loadingHide:false,
-     indexPage:1
+     nodataImgShow:false
  },
 
 // 方法： ---------------------------
@@ -57,7 +59,7 @@ Page({
     this.data.teachersData = []
 
     // 2.重新赋值页码
-    this.data.indexPage = 1
+    indexPage = 1
     
     // 3.请求数据
     this.reqData(1,this.data.currentID,this.data.currentID)
@@ -65,10 +67,10 @@ Page({
   },
   onReachBottom: function() {
     // 页面上拉触底事件的处理函数
-    this.data.indexPage = this.data.indexPage + 1
+    indexPage =  indexPage + 1
 
     // 2.请求数据
-    this.reqData(this.data.indexPage,this.data.currentID,this.data.currentID)
+    this.reqData( indexPage,this.data.currentID,this.data.currentID)
   },
   onShareAppMessage: function() {
     // 用户点击右上角分享
@@ -83,10 +85,12 @@ Page({
 // 3.点击菜单栏
 tapMenuItem:function(e){
  
+ currentPage = e.currentTarget.id
+ indexPage = 1
    this.setData({
      currentID: e.currentTarget.id,
-     currentPage: e.currentTarget.id,
-     indexPage:1,
+     
+     
      teachersData:[]
     })
 
@@ -97,12 +101,7 @@ tapMenuItem:function(e){
 // func:请求数据：
 reqData:function(index,recommendType,teacherType){
 
-//1.调用网络模板获取md5加密后的字符串
- var networkTemplate = require('../../utils/network.js'); 
- var UpperMd5Str = networkTemplate.getUpperMd5Str()
-
-
-//2.提示框
+//提示框
 var that = this
 
   that.setData({
@@ -111,19 +110,36 @@ var that = this
 
 //3. 请求数据
 wx.request({
-  url: getApp().globalData.serverUrl,
+  url: app.serverUrl,
   data: {
      action: 'GetSpecialTeachers' ,
      RecommendType: recommendType ,
      TeacherType: teacherType,
      pageIndex: index,
      pageSize: '15' ,
-     VerSafe: UpperMd5Str
+     VerSafe: app.VerSafe
   },
   header: {
       'content-type': 'application/json'
   },
   success: function(res) {
+
+    // 请求失败
+if(res.data.signIOS == 0){
+ app.tip.showError(res.data.value) 
+  that.setData({
+   nodataImgShow:true
+ })
+  return
+}
+
+// 暂无更多数据
+if(res.data.value.length == 0){
+     that.setData({
+   loadingHide:true
+}) 
+   app.tip.showError("暂无更多数据")  
+}
 
      //1.追加数组元素：
   Array.prototype.push.apply(that.data.teachersData, res.data.value);
@@ -131,12 +147,13 @@ wx.request({
   //2. 绑定数据
   that.setData({
    teachersData:that.data.teachersData,
-   loadingHide:true
+   loadingHide:true,
+    nodataImgShow:(that.data.teachersData.length > 0) ? false:true
 })  
   },
 
     fail: function(res) {
-    console.log(res.data)
+  
   }
 })
 

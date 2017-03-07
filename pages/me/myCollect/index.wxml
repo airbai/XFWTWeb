@@ -1,0 +1,49 @@
+<view class ='contain'> 
+
+<!--1.菜单栏-->
+<view class ='memuView'> 
+    <view wx:for="{{menuBoxs}}" class="titleView {{currentIndex == index ? 'selectedBox' : ''}}" bindtap="tapMenuBox" id="{{index}}" data-orderStatus="{{item.orderStatus}}"> {{item.title}} 
+    </view>
+ </view>
+
+
+ <!--2.列表View-->
+<scroll-view>
+
+ <!--列表背景View-->
+ <view class="cell" wx:for="{{teachersData}}">
+
+ <!--item上部分-->
+<view class="cell-top">
+ <view class="cell-top-left">
+   <image src= "{{item.PhoneLink =='' ? '../../../image/0713head.png':'http://112.74.128.53:9997/'+item.PhoneLink}} "></image>
+ </view>
+<view class="cell-top-right">
+   <text class="titleText">{{item.CourseTitle}}</text> 
+    <text class="schoolText"> {{orderStatus==4 ?item.GraduateSchool : ("教龄:"+item.SchoolAge+"年")}}</text>
+    <text class="nameText">{{item.Degree}}</text>
+    <text class="classText">{{orderStatus==4 ? "价格" :"课程编号:"}}</text>
+     <text class="priceText">{{orderStatus==4 ? ("￥"+item.MinPrice) : item.pkid}}</text> 
+    <text class="timeText">{{item.address}}</text> 
+    <text class="countText">{{orderStatus==4 ? item.TeacherName :item.UserName}}</text>
+</view>
+</view>
+
+<!--item下部分-->
+<view class="cell-bottom">
+   <text class="orderText">{{orderStatus==4 ? ("被查看数:"+item.LookCount) :("老师ID:"+item.TeacherID)}}</text> 
+   <text class="totalPriceText">{{orderStatus==4 ? (item.distance+"m") :("￥"+item.CourseNowPrice)}}</text>
+ </view>
+ </view>
+
+</scroll-view> 
+
+  </view>
+
+   <!--加载提示-->
+  <loading hidden="{{loadingHide}}">
+        加载中...
+    </loading>
+
+   <!--无数据图-->
+     <image wx:if="{{nodataImgShow}}" class = "nodata-img" src="../../../image/nodata.png"></image>

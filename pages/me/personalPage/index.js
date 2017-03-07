@@ -1,3 +1,4 @@
+var app = getApp()
 Page({
   data:{
    iconLink:'../../../image/0225icon.png',
@@ -9,6 +10,7 @@ Page({
 
   onLoad:function(options){
     // 生命周期函数--监听页面加载
+    // 请求数据
      this.reqData()
   },
   onReady:function(){
@@ -44,41 +46,65 @@ var that = this
 wx.chooseImage({
   count: 1, // 默认9
   sizeType: ['original', 'compressed'], // 可以指定是原图还是压缩图，默认二者都有
-  sourceType: ['album', 'camera'], // 可以指定来源是相册还是相机，默认二者都有
+  sourceType: ['album', 'camera'],
   success: function (res) {
     
     // 返回选定照片的本地文件路径列表，tempFilePath可以作为img标签的src属性显示图片
     that.setData({
-     iconLink:res.tempFilePaths
+     iconLink:res.tempFilePaths[0]
     })
+
+// 上传头像
+wx.uploadFile({
+      url: 'http://112.74.128.53:9997/upLoadFiles.asmx/upLoadOneChunkForIOS', 
+      filePath: res.tempFilePaths[0],
+      name: 'userIcon',
+      formData:{
+        // 'user': 'test'
+      },
+      　header:{
+　　　　　　'content-type':'multipart/form-data'
+　　　　},
+      success: function(res){
+        var data = res.data
+       
+      },fail: function(res){
+        var data = res.data
+        //do something
+      }
+    })
+
+
   }
 })
   },
 
-// 男生、女生选择事件：
-  checkboxChange: function(e) {
-    
-    console.log('checkbox发生change事件，携带value值为：', e.detail.value)
-
-  },
+// func:男生、女生选择事件
+  radioChange: function(e) {
+},
 
 
-// 取消事件：
+// func:取消事件
   cancle:function(){
 wx.navigateBack({
   delta: 1
 })
   },
-  // 保存事件：
+  // func:保存事件
   keep:function(){
 
 var that = this;
    that.setData({
     loadingLogo: false
    }),
+
+     
 wx.navigateBack({ //返回
   delta: 1
 })
+
+  
+
   },
 
 // 请求数据：
@@ -86,20 +112,15 @@ wx.navigateBack({ //返回
 
     wx.showNavigationBarLoading()
 
-    // 调用网络模板获取md5加密后的字符串
- var networkTemplate = require('../../../utils/network.js'); 
-var UpperMd5Str = networkTemplate.getUpperMd5Str()
-
 //请求数据
 var that = this
-
 wx.request({
-  url: getApp().globalData.serverUrl,
+  url: app.serverUrl,
   data: {
      action: 'GetUserDetailss' ,
      type: '0' ,
-     TeacherID: '2895' ,
-     VerSafe: UpperMd5Str
+     TeacherID: app.util.getLoginInfo().uid ,
+     VerSafe: app.VerSafe
   },
   header: {
       'content-type': 'application/json'
@@ -108,22 +129,26 @@ wx.request({
 
 wx.hideNavigationBarLoading()
 
-//判断性别是否相等
-if (res.data.value[0].Sex === false ){
+// 请求失败
+if(res.data.signIOS == 0){
+ app.tip.showError(res.data.value) 
+  return
+}
 
-  that.setData({ girlChecked:true})
+//判断性别是否相等
+if (res.data.value[0].Sex){
+ that.setData({ boyChecked:true})
   } else{
-     that.setData({ boyChecked:true})
+  that.setData({ girlChecked:false}) 
   }
 
   that.setData({
   jsonData: res.data.value[0],
-  iconLink:"http://112.74.128.53:9997/" + res.data.value[0].PhoneLink
+  iconLink:app.imageUrl + res.data.value[0].PhoneLink
 })  
   },
 
     fail: function(res) {
-    console.log(res.data)
   }
 })
   }

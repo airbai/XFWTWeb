@@ -1,0 +1,28 @@
+/*view*/
+.cell{
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;/*两端对齐*/
+    align-items: center;    /*居中对齐*/
+    border-bottom: solid 0.5px rgb(245, 245, 245);
+}
+
+/*文字*/
+.cell text{
+    margin-left: 10px;
+    font-size: 15px;
+}
+
+/*箭头*/
+.cell image{
+   width: 8px;
+    height: 9px;
+   margin-right: 10px;
+}
+
+/*退出登录*/
+button{
+    margin: 50px 10px 0px 10px;
+    font-size: 17px;
+}
