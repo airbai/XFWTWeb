@@ -1,5 +1,7 @@
 var index = 1 
 
+
+let app = getApp()
 Page({
 
   data: {
@@ -36,7 +38,6 @@ Page({
 
  
         teachersData:[ ],
-        loadingHide:false
   },
 
 
@@ -64,7 +65,6 @@ Page({
   },
   onPullDownRefresh: function() {
     // 页面相关事件处理函数--监听用户下拉动作
-
     // 1.清空数组
     this.data.teachersData = []
 
@@ -95,9 +95,7 @@ reqData:function(index){
 
 //2.提示框
 let that = this
-  that.setData({
-   loadingHide:false
-})
+wx.showNavigationBarLoading()
 
 //3. 请求数据
 wx.request({
@@ -118,30 +116,22 @@ wx.request({
 
     // 请求失败
 if(res.data.signIOS == 0){
- T.showError(res.data.value) 
+ app.tip.showError(res.data.value) 
   return
 }
 
-// 暂无更多数据
-if(res.data.value.length == 0){
-     that.setData({
-   loadingHide:true
-}) 
-   T.showError("暂无更多数据")  
-}
 
  //1.追加数组元素：
   Array.prototype.push.apply(that.data.teachersData, res.data.value);
   
   //2. 绑定数据
+  wx.hideNavigationBarLoading()
   that.setData({
-   teachersData:that.data.teachersData,
-   loadingHide:true
+   teachersData:that.data.teachersData
 })  
   },
 
     fail: function(res) {
-    console.log(res.data)
   }
 })
 
@@ -157,6 +147,17 @@ wx.navigateTo({
   url: 'teachers/index?id='+id+'&titleType='+titleType
 })
 },
+
+ // func:点击cell事件
+tappedCellAction:function(e){
+ 
+ let that = this
+ let teacherData = that.data.teachersData[e.currentTarget.dataset.index]
+ 
+ wx.navigateTo({ //跳转到老师主页
+   url: 'teachers/teacherPage/index?TeacherID='+ teacherData.TeacherID
+ })
+}
 
 })
 

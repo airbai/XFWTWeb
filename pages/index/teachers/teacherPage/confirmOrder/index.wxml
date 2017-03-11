@@ -1,0 +1,33 @@
+<view class="contain">
+
+<!--课程信息-->
+<view class="courseInfoView">
+<text class="courseInfo">课程信息</text>
+<text class="courseName">课程名称:</text>
+<text class="courseTitle">{{CourseTitle}}</text>
+<text class="coursePrice">课程单价:</text>
+<text class="price">  ¥{{MinPrice}}</text>
+<text class="courseTime">课程时长:</text>
+<text class="plus" bindtap="plusAction">+</text>
+<text class="count">{{count}}</text>
+<text class="minus" bindtap="minusAction">-</text>
+<text class="courseTotalPrice">课程总价:</text>
+<text class="totalPrice">¥{{totalPrice}}</text>
+</view>
+
+<!--上课地址-->
+<view class="addressView">
+<text class="courseAddress">上课地址</text>
+<text class="address">深圳市宝安区凤岗校区</text>
+</view>
+
+<!--备注-->
+<view class="remarkView">
+<text class="remark">备注</text>
+<textarea placeholder="您可以留言给我们哦..."/>
+</view>
+
+<!--提交订单-->
+<button class="commitBtn" type="warn" bindtap="commitAction">提交订单</button>
+
+</view>

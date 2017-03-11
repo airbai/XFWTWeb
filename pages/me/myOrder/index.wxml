@@ -8,7 +8,7 @@
 
 
  <!--2.列表View-->
-<scroll-view>
+<view class="bgView">
 
  <!--列表背景View-->
  <view class="cell" wx:for="{{teachersData}}">
@@ -16,7 +16,7 @@
  <!--item上部分-->
 <view class="cell-top">
  <view class="cell-top-left">
-   <image src="http://112.74.128.53:9997/{{item.PhotoLink}}"></image>
+   <image src= "{{item.PhotoLink =='' ? '../../../image/0713head.png':'http://112.74.128.53:9997/'+item.PhotoLink}} "></image>
  </view>
 <view class="cell-top-right">
    <text class="titleText">{{item.CourseTitle}}</text> 
@@ -36,14 +36,9 @@
  </view>
  </view>
 
-</scroll-view> 
+</view>
 
   </view>
-
-   <!--加载提示-->
-  <loading hidden="{{loadingHide}}">
-        加载中...
-    </loading>
 
    <!--无数据图-->
      <image wx:if="{{nodataImgShow}}" class = "nodata-img" src="../../../image/nodata.png"></image>

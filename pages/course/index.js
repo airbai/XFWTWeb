@@ -3,8 +3,9 @@
 // getCurrentPage是获取当前页面的实例对象。
 
 var indexPage = 1
-var  currentPage = 0
-var app = getApp()
+var currentPage = 0
+let app = getApp()
+
 Page({
 
     data:{
@@ -28,8 +29,7 @@ Page({
     // 3.item数据
      currentID : '1',
      teachersData: [],
-     loadingHide:false,
-     nodataImgShow:false
+     nodataImgShow:true
  },
 
 // 方法： ---------------------------
@@ -103,10 +103,7 @@ reqData:function(index,recommendType,teacherType){
 
 //提示框
 var that = this
-
-  that.setData({
-   loadingHide:false
-})
+wx.showNavigationBarLoading()
 
 //3. 请求数据
 wx.request({
@@ -134,20 +131,17 @@ if(res.data.signIOS == 0){
 }
 
 // 暂无更多数据
-if(res.data.value.length == 0){
-     that.setData({
-   loadingHide:true
-}) 
-   app.tip.showError("暂无更多数据")  
-}
+// if(res.data.value.length == 0){
+//    app.tip.showError("暂无更多数据")  
+// }
 
      //1.追加数组元素：
   Array.prototype.push.apply(that.data.teachersData, res.data.value);
 
   //2. 绑定数据
+  wx.hideNavigationBarLoading()
   that.setData({
    teachersData:that.data.teachersData,
-   loadingHide:true,
     nodataImgShow:(that.data.teachersData.length > 0) ? false:true
 })  
   },
@@ -157,6 +151,17 @@ if(res.data.value.length == 0){
   }
 })
 
+},
+
+ // func:点击cell事件
+tappedCellAction:function(e){
+ 
+ let that = this
+ let teacherData = that.data.teachersData[e.currentTarget.dataset.index]
+ 
+ wx.navigateTo({ //跳转到老师主页
+   url: '../index/teachers/teacherPage/index?TeacherID='+ teacherData.TeacherID
+ })
 }
 
 

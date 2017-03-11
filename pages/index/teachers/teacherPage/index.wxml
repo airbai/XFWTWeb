@@ -2,91 +2,99 @@
 
 <!--头部-->
 <view class="header">
-<image class="icon" src="{{PhoneLink}}"></image>
-<text class="TeacherName">{{TeacherName}}</text>
-<text class="TeachFeature">{{TeachFeature}}</text>
+<image class="icon" src="http://112.74.128.53:9997/{{baseInfoData.PhoneLink}}"></image>
+<text class="TeacherName">{{baseInfoData.UserName}}</text>
+<text class="TeachFeature">{{baseInfoData.TeachFeature}}</text>
 <view class="countView"> 
-<text>学生数: {{StuCount}}个</text>
-<text class="courseCount">课程数: {{CourseCount}}个</text>
-<text>评论数: {{CommentCount}}个</text>
+<text>学生数: {{baseInfoData.StuCount}}个</text>
+<text class="courseCount">课程数: {{baseInfoData.CourseCount}}个</text>
+<text>教龄: {{baseInfoData.SchoolAge}}年</text>
 </view>
 </view>
 
 <!--菜单栏-->
 <!--1.菜单栏-->
 <view class ='memuView'> 
-    <view wx:for="{{menuBoxs}}" class="titleView {{currentIndex == index ? 'selectedBox' : ''}}" bindtap="tapMenuBox" id="{{index}}" data-orderStatus="{{item.orderStatus}}"> {{item.title}} 
+    <view wx:for="{{menuBoxs}}" class="titleView {{currentIndex == index ? 'selectedBox' : ''}}" bindtap="tapMenuBox" id="{{index}}"> {{item.title}} 
     </view>
  </view>
 
 <!--课程中间内容-->
 <view class="middle"  style="display:{{     courseDisplay}};">
-<view class ='courseMiddleCell'>
-<text class ='subject'>高中辅导科目</text>
-<text class ='price'>¥150/小时</text>
-<text class ='detail'>详情</text>
+<view class ='courseMiddleCell' wx:for="{{courseData}}">
+<text class ='subject'>{{item.CourseTitle}}</text>
+<text class ='price'>¥{{item.MinPrice}}/小时</text>
+<text class ='join' bindtap="joinAction" id="{{index}}">报名</text>
 </view>
 </view>
 
+<!--简介中间内容-->
 <view class="middle" style="display:{{introDisplay}};">
 <!--基本资料cell-->
 
 <view class ='introCell'>
 <view class ='cellTop'>
-<image src="../../../../image/0225mineS.png"></image>
+<image src="../../../../image/info.png"></image>
 <label>基本资料</label>
 </view>
-<text>授课教龄:2</text>
-<text>老师国籍:中国</text>
-<text>最高学历:本科</text>
+<text>授课教龄:  {{baseInfoData.SchoolAge || '暂未填写'}}</text>
+<text>老师国籍:  {{baseInfoData.Country || '暂未填写'}}</text>
+<text>最高学历:  {{baseInfoData.Degree || '暂未填写'}}</text>
 </view>
 
 <!--自我介绍cell-->
 <view class ='introCell'>
 <view class ='cellTop'>
-<image src="../../../../image/0225mineS.png"></image>
+<image src="../../../../image/intro.png"></image>
 <label>自我介绍</label>
 </view>
-<text>高中就读高中就读高中就读高中就读高中就读高中就读高中就读高中就读高中就读</text>
+<text>{{baseInfoData.Profile || '暂未填写'}}</text>
 </view>
 
 <!--授课范围cell-->
 <view class ='introCell'>
 <view class ='cellTop'>
-<image src="../../../../image/0225mineS.png"></image>
+<image src="../../../../image/class.png"></image>
 <label>授课范围</label>
 </view>
-<text>授课区域:宝安区</text>
-<text>授课方式:老师上门</text>
-<text>授课科目:生物辅导</text> 
+<text>授课区域:  {{classData.TeacherClassAddress || '暂未填写'}}</text>
+<text>授课方式:  {{classData.ClassType || '暂未填写'}}</text>
+<text>授课科目:  {{classData.CourseTitle || '暂未填写'}}</text> 
 </view>
 
 <!--教育背景cell-->
 <view class ='introCell'>
 <view class ='cellTop'>
-<image src="../../../../image/0225mineS.png"></image>
+<image src="../../../../image/education.png"></image>
 <label>教育背景</label>
 </view>
-<text>起始时间:2012-02至2018-04</text>
-<text>毕业院校:广州大学</text>
-<text>所学专业:计算机应用</text>
-<text>教育描述:专业课成绩优秀</text>
+<text>起始时间:  {{educationData.StartDate || '暂未填写'}}</text>
+<text>毕业院校:  {{educationData.PlaceName  || '暂未填写'}}</text>
+<text>所学专业:  {{educationData.Subject || '暂未填写'}}</text>
+<text>教育描述:  {{educationData.Desctiption || '暂未填写'}}</text>
 </view>
 
 <!--工作经历cell-->
 <view class ='introCell'>
 <view class ='cellTop'>
-<image src="../../../../image/0225mineS.png"></image>
+<image src="../../../../image/work.png"></image>
 <label>工作经历</label>
 </view>
-<text>起始时间:2012-02至2017-03</text>
-<text>老就任职位:生物老师</text>
-<text>工作描述:五个班的生物老师</text>
+<text>起始时间:  {{workData.StartDate || '暂未填写'}}</text>
+<text>就任职位:  {{workData.Subject  || '暂未填写'}}</text>
+<text>工作描述:  {{workData.Desctiption || '暂未填写'}}</text>
 </view>
 
 </view>
 
  <!--底部栏-->
- <view class="footer">www</view>
+ <view class="footer">
+ <view bindtap="collectAction">
+ <image src="{{collectIcon}}"></image>
+ </view> 
+ <view bindtap="chatAction">
+ <image src="{{chatIcon}}"></image>
+ </view> 
+ </view>
 
 </view>

@@ -1,0 +1,146 @@
+text , textarea{
+    font-size: 14px;
+}
+
+/*课程信息view*/
+.courseInfoView{
+    width: 100%;
+    height: 160px;
+    border-bottom: solid 1px rgb(245, 245, 245);
+    position: relative;
+}
+
+/*课程view下的所有text*/
+.courseInfoView text{
+   position: absolute; 
+  
+}
+
+/*课程名称*//*课程时长*//*课程单价*//*课程总价*/
+.courseName,.courseTime,.coursePrice,.courseTotalPrice{
+    display: block;
+    left: 10px;
+}
+
+/*课程信息*//*上课地址*//*备注*/
+.courseInfo,.courseAddress,.remark{
+    display: block;
+   margin-left: 10px;
+    color: red;
+    font-size: 16px; 
+}
+
+/*课程信息*/
+.courseInfo{
+color: red;
+top: 15px;
+font-size: 16px;
+}
+
+/*课程名称*/
+.courseName{
+top: 43px;
+}
+
+/*课程标题*/
+.courseTitle{
+top: 43px;
+right: 10px;
+}
+
+/*课程单价*/
+.coursePrice{
+  top: 70px ;  
+}
+/*单价*/
+.price{
+    top: 70px;
+    right: 10px;
+}
+
+
+/*课程时长*/
+.courseTime{
+  top:100px;
+}
+
+/*➕ ➖*/
+.minus,.plus{
+ top: 94px ;
+ width: 25px;
+    height: 25px;
+    line-height: 25px;
+    color: gray;
+    border: solid 0.5px gray;
+    border-radius: 12.5px;
+    text-align: center;
+    font-size: 15px;
+}
+/* - */
+.minus{
+   right: 10px; 
+}
+/* 个数 */
+.count{
+   top: 94px;
+   right: 50px; 
+    width: 25px;
+    height: 25px;
+     line-height: 25px;
+    text-align: center;
+}
+
+/* + */
+ .plus{
+   right: 93px;  
+ }
+
+ /*课程总价*/
+.courseTotalPrice{
+   top: 133px;
+}
+/*总价*/
+.totalPrice{
+    top: 133px;
+    right: 10px;
+    color: sandybrown;
+border-bottom: solid 1px sandybrown;
+font-size: 14px;
+}
+
+/*上课地址背景view*/
+.addressView{
+    border-bottom: solid 1px rgb(245, 245, 245);
+}
+/*上课地址*/
+.courseAddress{
+    display: block;
+    margin: 15px 0 0 10px;
+    color: red;
+    font-size: 16px;
+}
+/*地址*/
+.address{
+    margin: 10px 10px 0 10px;
+    line-height: 34px;
+    color: gray;
+}
+/*备注*/
+.remark{
+    margin-top: 10px;
+}
+
+/*输入框*/
+textarea{
+ 
+    width: 90%;
+    margin-left: 15px;
+    margin-top: 15px;
+    border: solid 1px red;
+    padding: 8px 0 0 5px;
+}
+/*提交订单*/
+.commitBtn{
+    margin: 30px 10px 0 10px;
+}
+ 

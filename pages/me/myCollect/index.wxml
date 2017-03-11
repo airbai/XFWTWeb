@@ -8,8 +8,8 @@
 
 
  <!--2.列表View-->
-<scroll-view>
-
+ 
+<view class="cellBgView">
  <!--列表背景View-->
  <view class="cell" wx:for="{{teachersData}}">
 
@@ -36,14 +36,9 @@
  </view>
  </view>
 
-</scroll-view> 
+</view>
 
   </view>
-
-   <!--加载提示-->
-  <loading hidden="{{loadingHide}}">
-        加载中...
-    </loading>
-
+ 
    <!--无数据图-->
      <image wx:if="{{nodataImgShow}}" class = "nodata-img" src="../../../image/nodata.png"></image>

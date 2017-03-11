@@ -1,6 +1,3 @@
-/*.contain{
-    background: green;
-}*/
 
 .header{
     height: 460rpx;
@@ -29,6 +26,7 @@ color: white;
 /*特点*/
 .TeachFeature{
  
+ width: 90%;
    color: white;
    font-size: 12px; 
    /*超出一行文字自动隐藏*/
@@ -82,16 +80,6 @@ background: white;
  }
 
 
- /*底部栏*/
- .footer{
-     position: fixed;
-     height: 50px;
-     background: yellow;
-     left: 0;
-     right: 0;
-     bottom: 0;
-
- }
 
 /*中间view*/
  .courseMiddleCell{
@@ -102,40 +90,44 @@ background: white;
      border-bottom: solid 0.5px rgb(245, 245, 245);
  }
 
-/*详情*/
- .detail{
-  position: absolute;
-  top: 5px;
+/*报名 价格 标题*/
+.join,.price, .subject{
+ position: absolute;
+  font-size: 13px;
+  top: 0;
+   height: 40px;
+}
+
+/*报名*/
+ .join{
   right: 8px;
   width: 50px;
-  height: 30px;
-  line-height: 30px;
- font-size: 11px;
- background: red;
- color: white;
+ color: red;
  text-align: center;
  border-radius: 5px;
  }
 
 /*价格*/
  .price{
-position: absolute;
-top: 0;
+
 right: 65px;
  width: 80px;
-height: 40px;
- font-size: 13px;
  color: sandybrown;
  }
 
  /*科目*/
  .subject{
-position: absolute;
-top: 0;
+
 left: 8px;
-right: 150px;
-height: 40px;  
- font-size: 13px; 
+right: 160px; 
+color: darkgray;
+
+ /*超出一行文字自动隐藏*/
+ overflow: hidden;
+ /*文字隐藏后添加省略号*/
+ text-overflow:ellipsis;
+ /*强制不换行*/
+  white-space:nowrap;
  }
 
 /*中间view*/
@@ -178,4 +170,33 @@ height: 40px;
     margin: 0 5px 8px 38px;
    color: darkgray;
    font-size: 12px;
+   line-height: 15px;
  }
+
+
+/*尾部*/
+ .footer{
+     position: fixed;
+     z-index: 1;
+     left: 0;
+     right: 0;
+     bottom: 0;
+     background: white;
+    height: 50px;
+    display: flex;
+    flex-direction: row;
+    border-top: solid 0.5px rgb(245, 245, 245);
+ }
+
+
+/*尾部3个view*/
+.footer view{
+    flex: 1;
+    text-align: center;
+    margin: auto;
+}
+
+.footer image{
+    width: 30px;
+    height: 30px;
+}

@@ -1,27 +1,27 @@
 {
     "pages":[
        
-       
-             "pages/login/index",
-             "pages/login/regist/index",
-             "pages/login/forgetPwd/index",
-             "pages/index/index",
-             "pages/course/index",
-             "pages/me/index",
-             "pages/index/teachers/index",
-             "pages/me/personalPage/index",
-             "pages/me/myOrder/index",
-             "pages/me/myTeacher/index",
-             "pages/me/myCollect/index",
-             "pages/me/myWallet/index",
-              "pages/me/aboutXF/index",
-              "pages/me/mySet/index",
-              "pages/me/mySet/modifyPwd/index",
-              "pages/me/mySet/sayOpinion/index",
-              "pages/index/teachers/teacherPage/index"
-              
-  
-             ],
+
+"pages/login/index",
+"pages/login/regist/index",
+"pages/login/forgetPwd/index",
+"pages/index/index",
+"pages/course/index",
+"pages/me/index",
+"pages/index/teachers/index",
+"pages/me/personalPage/index",
+"pages/me/myOrder/index",
+"pages/me/myTeacher/index",
+"pages/me/myCollect/index",
+"pages/me/myWallet/index",
+"pages/me/aboutXF/index",
+"pages/me/mySet/index",
+"pages/me/mySet/modifyPwd/index",
+"pages/me/mySet/sayOpinion/index",
+"pages/index/teachers/teacherPage/index",
+"pages/index/teachers/teacherPage/confirmOrder/index",
+"pages/index/teachers/teacherPage/confirmOrder/pay/index"
+],
     "window":{
         "backgroundTextStyle":"light",
         "navigationBarTextStyle": "white",

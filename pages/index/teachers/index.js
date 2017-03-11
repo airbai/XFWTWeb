@@ -3,8 +3,7 @@ Page({
 
   data:{
         teachersData:[ ],
-        loadingHide:false,
-        nodataImgShow:false
+        nodataImgShow:true
   },
 
   
@@ -68,11 +67,7 @@ reqData:function(index,recommendType,teacherType){
 
 //提示框
 var that = this
-
-  that.setData({
-   loadingHide:false
-
-})
+wx.showNavigationBarLoading()
 
 //3. 请求数据
 wx.request({
@@ -101,12 +96,9 @@ if(res.data.signIOS == 0){
 }
 
 // 暂无更多数据
-if(res.data.value.length == 0){
-     that.setData({
-   loadingHide:true
-}) 
-   getApp().tip.showError("暂无更多数据")  
-}
+// if(res.data.value.length == 0){
+//    getApp().tip.showError("暂无更多数据")  
+// }
 
      //1.追加数组元素：
   Array.prototype.push.apply(that.data.teachersData, res.data.value);
@@ -114,9 +106,9 @@ if(res.data.value.length == 0){
  
 
   //2. 绑定数据
+  wx.hideNavigationBarLoading()
   that.setData({
    teachersData:that.data.teachersData,
-   loadingHide:true,
    nodataImgShow:(that.data.teachersData.length > 0) ? false:true
 })  
   },
@@ -128,20 +120,14 @@ if(res.data.value.length == 0){
 
 },
 
+ // func:点击cell事件
 tappedCellAction:function(e){
-  // func:点击cell事件
-  var that = this
- let teacherData = that.data.teachersData[e.currentTarget.dataset.index]
- let PhoneLink = 'PhoneLink=' + teacherData.PhoneLink +'&'
- let TeacherName = 'TeacherName=' + teacherData.TeacherName +'&'
- let TeachFeature = 'TeachFeature=' + teacherData.TeachFeature +'&'
- let StuCount = 'StuCount=' + teacherData.StuCount +'&'
- let CourseCount = 'CourseCount=' + teacherData.CourseCount +'&'
- let CommentCount = 'CommentCount=' + teacherData.CommentCount +'&'
- let TeacherID = 'TeacherID=' + teacherData.TeacherID
  
- wx.navigateTo({
-   url: 'teacherPage/index?'+ PhoneLink+TeacherName+TeachFeature+StuCount+CourseCount+CommentCount+TeacherID
+ let that = this
+ let teacherData = that.data.teachersData[e.currentTarget.dataset.index]
+ 
+ wx.navigateTo({ //跳转到老师主页
+   url: 'teacherPage/index?TeacherID='+ teacherData.TeacherID
  })
 }
 

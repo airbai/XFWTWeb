@@ -1,0 +1,42 @@
+
+/*课程总价View*/
+.courseView{
+    padding: 10px;
+}
+
+/*课程总价*/
+.course{
+    display: inline-block;
+}
+
+/*价格*/
+.price{
+float: right;
+color: sandybrown;
+}
+
+/*支付方式view*/
+.payStyleView{
+  padding: 10px;
+  border-bottom: solid 0.5px rgb(245, 245, 245);
+}
+
+/*微信 支付宝label*/
+.radio-group label{
+    display: block;
+    margin: 10px 0 10px 0;
+ color: gray;
+ font-size: 14px;
+}
+ 
+
+/*图标*/
+radio-group image{
+    display: inline-block;
+    width: 20px;
+    height: 20px;
+}
+
+.sure{
+    margin: 100px 10px 0 10px;
+}

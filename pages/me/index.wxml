@@ -1,7 +1,5 @@
 <view class="contain">
-
-<scroll-view class="scroll-view">
-
+ 
 <!--头部-->
 <view class="headerView">
 <view class="imageView" bindtap="tapImageView">
@@ -19,8 +17,6 @@
   <image class="arrow" src="../../image/0106arrow3x.png"></image>
 
 </view>
-
-
-</scroll-view>
+ 
 
 </view>

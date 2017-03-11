@@ -22,9 +22,8 @@ Page({
      currentIndex : 0,
      orderStatus: 4,
      teachersData: [],
-     loadingHide:false,
      indexPage:1,
-     nodataImgShow:false
+     nodataImgShow:true
  },
 
 // 方法： ---------------------------
@@ -98,11 +97,7 @@ reqData:function(index,orderStatus){
 
 //提示框
 var that = this
-
-  that.setData({
-   loadingHide:false
-})
-
+wx.showNavigationBarLoading()
 
 //3. 请求数据
 wx.request({
@@ -130,20 +125,17 @@ if(res.data.signIOS == 0){
 }
 
 // 暂无更多数据
-if(res.data.value.length == 0){
-     that.setData({
-   loadingHide:true
-}) 
-   getApp().tip.showError("暂无更多数据")  
-}
+// if(res.data.value.length == 0){
+//    getApp().tip.showError("休息下吧≖ ◡ ≖")  
+// }
 
      //1.追加数组元素：
   Array.prototype.push.apply(that.data.teachersData, res.data.value);
 
   //2. 绑定数据
+  wx.hideNavigationBarLoading()
   that.setData({
    teachersData:that.data.teachersData,
-   loadingHide:true,
     nodataImgShow:(that.data.teachersData.length > 0) ? false:true
 })  
   },
