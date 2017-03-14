@@ -86,7 +86,7 @@ loginOutAction:function(){
   // 退出登录：
 
 // 同步清理缓存
-  // try { wx.clearStorageSync()} catch(e) { }
+  try { wx.clearStorageSync()} catch(e) { }
 
 // 跳转
 wx.redirectTo({

@@ -1,0 +1,41 @@
+<view class="contain">
+
+<view class="bgView">
+<!--自己cell-->
+<view wx:for="{{selfDatas}}" class="selfView">
+<!--文字内容-->
+<view  wx:if="{{item.flag=='文本'}}" class="text" >{{item.text}}</view>
+<!--自己头像-->
+<image class="selfIcon" src="../../../../../image/face.png"></image>
+ <!--表情、图片-->
+<image wx:if="{{item.flag=='表情'}}" class="facePic" src="{{item.facePic}}" mode="aspectFit" ></image>
+</view>
+
+</view>
+
+
+
+<view class="footer">
+<!--语音-->
+<view class="voiceView"bindtap="voiceAction">
+<image class="voice" src="../../../../../image/voice.png" ></image>
+</view>
+
+<!--输入框-->
+<input placeholder="请输入文字" style="visibility:{{hideInput}};" bindconfirm="sendTextAction"/>
+<!--按住说话button-->
+<button class="say" style="visibility:{{hideSayBtn}};">按住 说话</button>
+
+<!--表情-->
+<view class="faceView" bindtap="faceAction">
+<image class="face" src="../../../../../image/face.png" ></image>
+</view>
+
+<!--添加-->
+<view class="addView">
+<image class="add" src="../../../../../image/add.png" ></image>
+</view>
+
+</view>
+
+</view>

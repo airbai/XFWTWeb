@@ -39,12 +39,14 @@ font-size: 16px;
 
 /*课程名称*/
 .courseName{
+
 top: 43px;
 }
 
 /*课程标题*/
 .courseTitle{
 top: 43px;
+    left:80px;
 right: 10px;
 }
 

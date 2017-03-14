@@ -1,3 +1,5 @@
+let app = getApp()
+
 Page({
   data:{
   phoneNum : '',
@@ -7,14 +9,16 @@ Page({
    
   onLoad:function(options){
     // 生命周期函数--监听页面加载
-  if(typeof(getApp().util.getLoginInfo()) == "undefined"){
+
+    // 是否有缓存
+  if(typeof(app.util.getLoginInfo()) == "undefined"){
    return
   }
     // 获取缓存里的phone、pwd
-      var that = this
+      let that = this
        that.setData({
-       phoneNum : getApp().util.getLoginInfo().phone ,
-       pwd : getApp().util.getLoginInfo().pwd 
+       phoneNum : app.util.getLoginInfo().phone ,
+       pwd : app.util.getLoginInfo().pwd 
  })
 
 // 自动登录
@@ -65,9 +69,10 @@ that.loginAction()
     //     登录
     if (!this.data.phoneNum || !this.data.pwd || this.data.phoneNum.length != 11 || isNaN(this.data.phoneNum) ){
 
-    getApp().tip.showError("请检查账号或密码") 
+    app.tip.showError("请检查账号或密码") 
      return
  }
+
 
 // 出现提示框
   this.setData({
@@ -83,16 +88,16 @@ reqData:function(){
     var that = this
 
 // pwd md5加密  
-let md5pwd = getApp().md5.hexMD5(this.data.pwd); 
+let md5pwd = app.md5.hexMD5(this.data.pwd); 
 
 //3. 请求数据
 wx.request({
-  url: getApp().serverUrl,
+  url: app.serverUrl,
   data: {
      action: 'logins' ,
      LoginName:that.data.phoneNum ,
      PassWords:md5pwd,
-     VerSafe: getApp().VerSafe
+     VerSafe: app.VerSafe
   },
   header: {
       'content-type': 'application/json'
@@ -106,7 +111,7 @@ wx.request({
 
 // 请求失败
 if(res.data.signIOS == 0){
- getApp().tip.showError(res.data.value) 
+ app.tip.showError(res.data.value) 
   return
 }
 
@@ -124,13 +129,7 @@ var userInfoJson = {
 // 缓存用户数据
 wx.setStorage({
   key: 'userLoginInfo',
-  data: userInfoJson,
-  success: function(res){
-    // 缓存成功
-  },
-  fail: function() {
-    // 缓存失败
-  }
+  data: userInfoJson
 })
 
 // 界面跳转

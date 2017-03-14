@@ -1,3 +1,5 @@
+let app = getApp()
+
 Page({
   data:{
     phoneNum: '',
@@ -62,17 +64,17 @@ Page({
    var that = this
    
   if (that.data.phoneNum.length != 11){
-   getApp().tip.showError("请输入有效手机") 
+   app.tip.showError("请输入有效手机") 
      return
 }
 
     wx.request({ // 获取验证码api
-  url: getApp().serverUrl,
+  url: app.serverUrl,
   data: {
     action: 'sendvers',
      Mobile: that.data.phoneNum ,
      SMS_Type: '3',
-     VerSafe: getApp().VerSafe
+     VerSafe: app.VerSafe
   },
   header: {
       'content-type': 'application/json'
@@ -81,7 +83,7 @@ Page({
 
     // 请求失败
 if(res.data.signIOS == 0){
- getApp().tip.showError(res.data.msg) 
+ app.tip.showError(res.data.msg) 
   return
 }
 
@@ -100,7 +102,7 @@ if (that.data.second != "获取验证码"){
  // 倒计时开始：
  that.countdown(that); 
 
-getApp().tip.showError("已发送，请查收") 
+app.tip.showError("已发送，请查收") 
 
 // 保存获取到的验证码
 that.setData({
@@ -108,7 +110,7 @@ that.setData({
 })
 },
    fail: function(res) {
-     getApp().tip.showError("网络出错")  
+     app.tip.showError("网络出错")  
   }
 })
  },
@@ -116,15 +118,15 @@ that.setData({
  //     func:确认事件
  sureAction: function(){
  
-      var that = this
+      let that = this
    
     if (!that.data.phoneNum ||  !that.data.code || !that.data.pwd || that.data.phoneNum.length != 11 || isNaN(that.data.phoneNum) ){
- getApp().tip.showError("请检查账号或密码")  
+ app.tip.showError("请检查账号或密码")  
 return
  }
 
  if(that.data.code != that.data.receiveCode){
-   getApp().tip.showError("验证码有误") 
+   app.tip.showError("验证码有误") 
 return
  }
 
@@ -142,16 +144,16 @@ return
     
 var that = this
 // pwd md5加密
-let md5pwd = getApp().md5.hexMD5(this.data.pwd)
+let md5pwd = app.md5.hexMD5(this.data.pwd)
 
 //3. 请求数据
 wx.request({
-  url: getApp().serverUrl,
+  url: app.serverUrl,
   data: {
      action: 'AlterPasswords' ,
      PassWord: md5pwd,
      Mobile: that.data.phoneNum,
-     VerSafe: getApp().VerSafe
+     VerSafe: app.VerSafe
   },
   header: {
       'content-type': 'application/json'
@@ -164,11 +166,11 @@ wx.request({
 })
 // 请求失败
 if(res.data.signIOS == 0){
- getApp().tip.showError(res.data.value) 
+ app.tip.showError(res.data.value) 
   return
 }
 
-getApp().tip.showSuccess("修改成功") 
+app.tip.showSuccess("修改成功") 
 
   // 跳转到首
 wx.navigateBack({

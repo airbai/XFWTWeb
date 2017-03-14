@@ -1,7 +1,7 @@
 {
     "pages":[
        
-
+"pages/index/teachers/teacherPage/chat/index",
 "pages/login/index",
 "pages/login/regist/index",
 "pages/login/forgetPwd/index",
@@ -19,6 +19,7 @@
 "pages/me/mySet/modifyPwd/index",
 "pages/me/mySet/sayOpinion/index",
 "pages/index/teachers/teacherPage/index",
+
 "pages/index/teachers/teacherPage/confirmOrder/index",
 "pages/index/teachers/teacherPage/confirmOrder/pay/index"
 ],

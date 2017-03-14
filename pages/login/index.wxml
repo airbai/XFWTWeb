@@ -1,7 +1,7 @@
 <view class="contain">
 
 <!--头像-->
-<image class="icon" src="../../../image/0713head.png"></image>
+<image class="icon" src="../../../image/0414couser.png"></image>
 
 <!--输入框-->
 <view class="phone-input-View">

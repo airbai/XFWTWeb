@@ -69,7 +69,7 @@ Page({
    // function：菜单栏事件
 tapMenuBox:function(e){
    
- var that = this
+ let that = this
 
    that.setData({
      currentIndex: e.currentTarget.id,
@@ -173,6 +173,7 @@ wx.navigateTo({
 // function：收藏事件
 collectAction:function(e){  
 
+// 切换图片
 let icon = (isCollected==false)?'../../../../image/collected.png':'../../../../image/collect.png'
 
 let that = this
@@ -180,7 +181,7 @@ let that = this
  collectIcon:icon
  })
 
-
+// 提示文字
 let text = (isCollected==false)?'已收藏':'取消收藏'
 app.tip.showSuccess(text)
  
@@ -188,8 +189,12 @@ app.tip.showSuccess(text)
 },
 
 // function：聊天事件
-chatAction:function(e){  
- 
+chatAction:function(e){ 
+
+let that = this
+ wx.navigateTo({
+   url: 'chat/index?teacherName='+that.data.baseInfoData.UserName
+ })
 },
 
 })
