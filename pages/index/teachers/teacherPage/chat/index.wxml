@@ -1,17 +1,30 @@
 <view class="contain">
 
-<view class="bgView">
+ 
+<scroll-view scroll-into-view="{{viewID}}" scroll-y="true" >
 <!--自己cell-->
-<view wx:for="{{selfDatas}}" class="selfView">
-<!--文字内容-->
-<view  wx:if="{{item.flag=='文本'}}" class="text" >{{item.text}}</view>
+<view wx:for="{{selfDatas}}" class="selfView" >
 <!--自己头像-->
 <image class="selfIcon" src="../../../../../image/face.png"></image>
- <!--表情、图片-->
+
+<!--文字内容-->
+<view  wx:if="{{item.flag=='文本'}}"  class="text" >{{item.text}}</view>
+
+ <!--表情-->
 <image wx:if="{{item.flag=='表情'}}" class="facePic" src="{{item.facePic}}" mode="aspectFit" ></image>
-</view>
+
+ <!--照片-->
+<image wx:if="{{item.flag=='照片'}}" class="photo" src="{{item.photo}}" mode="aspectFit"></image>
+
+ <!--语音-->
+<image wx:if="{{item.flag=='语音'}}" class="voicePic" src="{{item.voicePic}}" mode="aspectFit" ></image>
 
 </view>
+ 
+<!--隐藏的toView-->
+<view id="{{viewID}}" class="hideView" style="visibility: hidden;">这个是隐藏的view,scroll-view会滚动到这个view的顶部,但是目前scroll-view存在bug! </view>
+
+</scroll-view>
 
 
 
@@ -22,9 +35,9 @@
 </view>
 
 <!--输入框-->
-<input placeholder="请输入文字" style="visibility:{{hideInput}};" bindconfirm="sendTextAction"/>
-<!--按住说话button-->
-<button class="say" style="visibility:{{hideSayBtn}};">按住 说话</button>
+<input placeholder="请输入文字" style="visibility:{{hideInput}};" value="{{inputValue}}" bindconfirm="sendTextAction"/>
+<!--按住说话view-->
+<view class="say" style="visibility:{{hideSayView}};" bindtouchstart="bindtouchstart" bindtouchend="bindtouchend">按住 说话</view>
 
 <!--表情-->
 <view class="faceView" bindtap="faceAction">
@@ -32,10 +45,11 @@
 </view>
 
 <!--添加-->
-<view class="addView">
+<view class="addView"  bindtap="addAction">
 <image class="add" src="../../../../../image/add.png" ></image>
 </view>
 
 </view>
 
 </view>
+

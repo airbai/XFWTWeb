@@ -1,7 +1,7 @@
 {
     "pages":[
-       
-"pages/index/teachers/teacherPage/chat/index",
+
+"pages/index/teachers/teacherPage/chat/index", "pages/test/index", 
 "pages/login/index",
 "pages/login/regist/index",
 "pages/login/forgetPwd/index",
