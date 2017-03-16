@@ -17,7 +17,7 @@
 <image wx:if="{{item.flag=='照片'}}" class="photo" src="{{item.photo}}" mode="aspectFit"></image>
 
  <!--语音-->
-<image wx:if="{{item.flag=='语音'}}" class="voicePic" src="{{item.voicePic}}" mode="aspectFit" ></image>
+<image wx:if="{{item.flag=='语音'}}" class="voicePic" src="{{item.voicePic}}" mode="aspectFit" data-index="{{index}}" bindtap="voicePicTap" ></image>
 
 </view>
  

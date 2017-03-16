@@ -1,5 +1,6 @@
+var app = getApp()
 var socketOpen = false
-
+var voicePathArr = []
 Page({
   data:{
   hideSayView:"hidden",
@@ -24,7 +25,7 @@ Page({
  })
 
  // socek连接
-  this.connectSocket()
+  // this.connectSocket()
 
   },
   onReady:function(){
@@ -111,13 +112,25 @@ voiceAction:function(){
 // func:开始长按说话
 bindtouchstart:function(){
 
-let that = this 
+ let that = this
+// 录音开始
 wx.startRecord({
   success: function(res){
-    var tempFilePath = res.tempFilePath[0]
-  }
+    // 将录音path存入数组
+   voicePathArr.push(res.tempFilePath)
+}
 })
 
+},
+
+// func:松开手指，结束说话
+bindtouchend:function(){
+
+let that = this 
+wx.stopRecord({
+  success: function(res){
+
+  // 包装数据
 let json = {
   text:'',
   facePic:'',
@@ -125,22 +138,34 @@ let json = {
   voicePic:'../../../../../image/voice.png',
   flag:'语音'
 }
- 
  that.data.selfDatas.push(json)
+
+// 渲染声音
 that.setData({
   viewID:'toView',
   selfDatas:that.data.selfDatas
 })
-},
-
-// func:松开手指，结束说话
-bindtouchend:function(){
-
-wx.stopRecord({
-  success: function(res){
-    // success
   }
 })
+},
+
+// func: 播放录音
+voicePicTap:function(e){
+
+// 根据索引取出声音path
+ var index = e.currentTarget.dataset.index
+  var path = voicePathArr[index]
+//  播放声音
+  wx.playVoice({
+    filePath: path,
+    success: function(res){
+     app.tip.showSuccess('播放录音成功')
+     
+    },
+    fail: function(res) {
+      app.tip.showError('播放录音失败') 
+    }
+  })
 },
 
 // func:发送文字
@@ -214,8 +239,6 @@ viewID:'toView',
 
   }
 })
-
-
 },
 
 
