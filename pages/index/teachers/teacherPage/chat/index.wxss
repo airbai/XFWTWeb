@@ -8,7 +8,9 @@ right: 0;
 bottom: 0;
 height: 44px;
 border-top: solid 0.5px lightgray;
+border-bottom: solid 0.5px lightgray;
 background: white;
+
 }
 
 /*语音、表情、添加view*/
@@ -46,6 +48,7 @@ left: 40px;
 right: 75px;
 border: solid 0.5px lightgray;
 border-radius: 3px;
+font-size: 15px;
 }
 /*输入框*/
 input{
@@ -55,20 +58,23 @@ padding-left: 5px;
 .say{ 
 line-height: 30px; 
 background: rgb(245, 245, 245);
-font-size: 15px;
+color: gray;
 text-align: center;
 }
 
 
 scroll-view{
 
-    height: 450px;
-    background: gray;
+position: fixed;
+left: 0;
+right: 0;
+    height: 300px;
+    background: rgb(245, 245, 245);
 }
 
 
 /*自己的cell*/
-.selfView{
+.selfCell{
   position: relative;
   margin: 20px 10px 0 60px;
  background: yellow;
@@ -76,7 +82,7 @@ text-align: right;
 
 }
 
-/*自己头像*/
+/*自己的头像*/
 .selfIcon{
  
  position: absolute;
@@ -87,38 +93,135 @@ text-align: right;
     background: blue;
 }
 
-/*发送的文字*/
-.text{
+/*自己发送的文字*/
+.selfText{
 
 margin: 0 50px 0 0;
 padding: 13px 0;
 background: red;
  text-align: right;
 }
-/*发送的表情*/
-.facePic{
+/*自己发送的表情*/
+.selfFacePic{
  margin: 0 50px 0 0;
     width: 40px;
     height: 40px; 
 background: brown;   
 }
-/*发送的照片*/
-.photo{
+/*自己发送的照片*/
+.selfPhoto{
    margin: 0 50px 0 0;
     width: 100px;
     height: 100px; 
 background: brown;   
 }
-/*发送的语音*/
-.voicePic{
+/*自己发送的语音*/
+.selfVoicePic{
    margin: 0 50px 0 0;
     width: 40px;
     height: 40px; 
 background: brown;  
 }
 
+/*对方的cell*/
+.otherCell{
+    background: blueviolet;
+  position: relative;
+  margin: 20px 60px 0 10px;
+ background: firebrick;
+text-align: left;
+}
+/*对方的头像*/
+.otherIcon{
+ position: absolute;
+ left: 0px;
+ top: 0px;
+    width: 40px;
+    height: 40px;
+    background: blue;
+}
+/*对方发的文字*/
+.otherText{
+
+margin: 0 0 0 50px;
+padding: 13px 0;
+background: greenyellow;
+ text-align: left;
+ color: black;
+}
+/*对方发的表情*/
+.otherFacePic{
+ margin: 0 0 0 50px;
+    width: 40px;
+    height: 40px; 
+background: brown; 
+}
+/*对方发的照片*/
+.otherPhoto{
+   margin: 0 0 0 50px;
+    width: 100px;
+    height: 100px; 
+background: brown; 
+}
+/*对方发的语音*/
+.otherVoicePic{
+    margin: 0 0 0 50px;
+    width: 40px;
+    height: 40px; 
+background: brown;  
+}
+
+
+
 /*底部隐藏的toView*/
 .hideView{
     height: 130px;
+    background: red;
 }
+
+/*照片面板*/
+.photoPan{
+
+position: fixed;
+bottom: 0;
+left: 0;
+right: 0;
+height: 200px;
+
+}
+
+/*小view*/
+.item{
+    display: inline-block;
+    margin-top: 25px;
+     width:60px;
+    height: 60px;
+    text-align: center;
+
+}
+/*相册view*/
+.box{
+    width:40px;
+    height: 40px;
+    border: solid 1px darkgray;
+    border-radius: 5px;
+    text-align: center;
+    margin: 0 auto;
+}
+/*图片*/
+.box image{
+    height:30px;
+    width: 30px;
+    margin:3px auto;
+}
+/*文字*/
+.subject{
+font-size: 11px;
+color: darkgray;
+margin: 2px auto;
+
+}
+
+
+
  

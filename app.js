@@ -11,6 +11,7 @@ serverUrl:'http://112.74.128.53:9528/APP_Action.ashx?',
 imageUrl: 'http://112.74.128.53:9997/',
 windowWidth:null,
 windowHeight:null,
+navbarHeight:64,
 VerSafe: null,
 
 // 1.模板（工具）

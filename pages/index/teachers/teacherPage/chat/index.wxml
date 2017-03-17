@@ -1,25 +1,30 @@
 <view class="contain">
 
- 
-<scroll-view scroll-into-view="{{viewID}}" scroll-y="true" >
+ <!--第①部分：滚动区域-->
+<scroll-view scroll-into-view="{{viewID}}" scroll-y="true" style="bottom:{{photoPanHeight+44}}px; height:{{scrollViewH}}px;">
+
+<block wx:for="{{selfDatas}}">
+
 <!--自己cell-->
-<view wx:for="{{selfDatas}}" class="selfView" >
+<view class="{{item.tag=='self' ? 'selfCell' : 'otherCell'}}" >
+
 <!--自己头像-->
-<image class="selfIcon" src="../../../../../image/face.png"></image>
+<image class="{{item.tag=='self' ? 'selfIcon' : 'otherIcon'}}" src="../../../../../image/face.png"></image>
 
 <!--文字内容-->
-<view  wx:if="{{item.flag=='文本'}}"  class="text" >{{item.text}}</view>
+<view  wx:if="{{item.flag=='文本'}}"  class="{{item.tag=='self' ? 'selfText' : 'otherText'}}" >{{item.text}}</view>
 
  <!--表情-->
-<image wx:if="{{item.flag=='表情'}}" class="facePic" src="{{item.facePic}}" mode="aspectFit" ></image>
+<image wx:if="{{item.flag=='表情'}}" class="{{item.tag=='self' ? 'selfFacePic' : 'otherFacePic'}}" src="{{item.facePic}}" mode="aspectFit" ></image>
 
  <!--照片-->
-<image wx:if="{{item.flag=='照片'}}" class="photo" src="{{item.photo}}" mode="aspectFit"></image>
+<image wx:if="{{item.flag=='照片'}}" class="{{item.tag=='self' ? 'selfPhoto' : 'otherPhoto'}}" src="{{item.photo}}" mode="aspectFit"></image>
 
  <!--语音-->
-<image wx:if="{{item.flag=='语音'}}" class="voicePic" src="{{item.voicePic}}" mode="aspectFit" data-index="{{index}}" bindtap="voicePicTap" ></image>
+<image wx:if="{{item.flag=='语音'}}" class="{{item.tag=='self' ? 'selfVoicePic' : 'otherVoicePic'}}" src="{{item.voicePic}}" mode="aspectFit" data-index="{{index}}" bindtap="voicePicTap" ></image>
 
 </view>
+</block>
  
 <!--隐藏的toView-->
 <view id="{{viewID}}" class="hideView" style="visibility: hidden;">这个是隐藏的view,scroll-view会滚动到这个view的顶部,但是目前scroll-view存在bug! </view>
@@ -27,15 +32,15 @@
 </scroll-view>
 
 
-
-<view class="footer">
+<!--第②部分：尾部-->
+<view class="footer" style="bottom:{{photoPanHeight}}px;">
 <!--语音-->
 <view class="voiceView"bindtap="voiceAction">
 <image class="voice" src="../../../../../image/voice.png" ></image>
 </view>
 
 <!--输入框-->
-<input placeholder="请输入文字" style="visibility:{{hideInput}};" value="{{inputValue}}" bindconfirm="sendTextAction"/>
+<input placeholder="请输入文字..." style="visibility:{{hideInput}};" value="{{inputValue}}" bindconfirm="sendTextAction"/>
 <!--按住说话view-->
 <view class="say" style="visibility:{{hideSayView}};" bindtouchstart="bindtouchstart" bindtouchend="bindtouchend">按住 说话</view>
 
@@ -44,10 +49,26 @@
 <image class="face" src="../../../../../image/face.png" ></image>
 </view>
 
+
 <!--添加-->
 <view class="addView"  bindtap="addAction">
 <image class="add" src="../../../../../image/add.png" ></image>
 </view>
+
+</view>
+
+
+<!--第③部分：照片面板-->
+<view class="photoPan" style="height:{{photoPanHeight}}px;">
+
+<view wx:for="{{items}}" class="item" style="margin-left:{{itemMarginLeft}}px;">
+<view class="box" bindtap="boxAction">
+<image src="{{item.icon}}"></image>
+</view>
+<text class="subject">{{item.text}}</text>
+</view>
+
+ 
 
 </view>
 

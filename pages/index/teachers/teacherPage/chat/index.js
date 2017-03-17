@@ -1,23 +1,66 @@
 var app = getApp()
 var socketOpen = false
 var voicePathArr = []
+let footerH = 44
+let photoPanH = 200
+let itemW = 60
 Page({
   data:{
   hideSayView:"hidden",
   hideInput:"",
-  selfDatas:[],
   facePic:'',
   inputValue:'',
   scrollViewH:0,
-  viewID:'toView'
+  viewID:'toView',
+  photoPanHeight:0,
+  itemMarginLeft:0,
+  selfDatas:[
+{
+  text:"家长您好，有什么可以帮到您孩子的 ？😊",
+  facePic:'',
+  photo:'',
+  voicePic:'',
+  flag:'文本',
+  tag:'other'
+}
+  ],
+
+   items:[
+      {
+       icon:"../../../../../image/album.png",
+       text:'相册'
+    },{
+        icon:"../../../../../image/camera.png",
+       text:'拍照'
+    },{
+        icon:"../../../../../image/video.png",
+       text:'视频'
+    },{
+        icon:"../../../../../image/location.png",
+       text:'位置'
+    },{
+       icon:"../../../../../image/redpacket.png",
+       text:'红包'
+    },{
+        icon:"../../../../../image/call.png",
+       text:'电话'
+    },{
+        icon:"../../../../../image/voice.png",
+       text:'语音'
+    },{
+        icon:"../../../../../image/search.png",
+       text:'收藏'
+    }
+  ]
   },
   onLoad:function(options){
     // 生命周期函数--监听页面加载
-  //   this.setData({
-  //     scrollViewH:getApp().windowHeight
-  //   })
 
-  //  var b = getApp().windowHeight
+    // scroll-view初始高度
+    this.setData({
+      scrollViewH:app.windowHeight-footerH,
+      itemMarginLeft: (app.windowWidth-itemW*4)/5
+    })
 
     // 标题
  wx.setNavigationBarTitle({
@@ -136,7 +179,8 @@ let json = {
   facePic:'',
   photo:'',
   voicePic:'../../../../../image/voice.png',
-  flag:'语音'
+  flag:'语音',
+  tag:'self'
 }
  that.data.selfDatas.push(json)
 
@@ -183,11 +227,10 @@ let json = {
   facePic:'',
   photo:'',
   voicePic:'',
-  flag:'文本'
+  flag:'文本',
+  tag:'self'
 }
-
- that.data.selfDatas.push(json)
- 
+that.data.selfDatas.push(json)
 that.setData({ 
   viewID:'toView',
   inputValue:'',//文字置空
@@ -199,13 +242,16 @@ that.setData({
 faceAction:function(){
 
 let that = this 
+
 let json = {
   text:'',
   facePic:'../../../../../image/face.png',
   photo:'',
   voicePic:'',
-  flag:'表情' 
+  flag:'表情',
+  tag:'self'
 }
+
  
  that.data.selfDatas.push(json)
 that.setData({
@@ -218,29 +264,46 @@ that.setData({
 addAction:function(){
  
   let that = this 
+
+// 是否出现照片面板
+var p =  (that.data.photoPanHeight==200) ? 0:200
+var s = (that.data.scrollViewH ==(app.windowHeight-footerH))? (app.windowHeight-footerH-photoPanH):(app.windowHeight-footerH)
+
+that.setData({
+    photoPanHeight:p,
+    scrollViewH:s
+})
+
+
+},
+
+
+// func:照片面板所有box点击事件
+boxAction:function(){
+
+let that = this
 wx.chooseImage({
   count: 9, // 最多可以选择的图片张数，默认9
   sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
   sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
   success: function(res){
-  
+ 
 let json = {
   text:'',
   facePic:'',
   photo:res.tempFilePaths[0],
   voicePic:'',
-  flag:'照片'
+  flag:'照片',
+  tag:'self'
 }
   that.data.selfDatas.push(json)
+
 that.setData({
 viewID:'toView',
   selfDatas:that.data.selfDatas
 })
-
   }
 })
-},
-
-
+}
 
 })
