@@ -3,7 +3,7 @@
  <!--第①部分：滚动区域-->
 <scroll-view scroll-into-view="{{viewID}}" scroll-y="true" style="bottom:{{photoPanHeight+44}}px; height:{{scrollViewH}}px;">
 
-<block wx:for="{{selfDatas}}">
+<block wx:for="{{chatDatas}}">
 
 <!--自己cell-->
 <view class="{{item.tag=='self' ? 'selfCell' : 'otherCell'}}" >
@@ -11,17 +11,31 @@
 <!--自己头像-->
 <image class="{{item.tag=='self' ? 'selfIcon' : 'otherIcon'}}" src="../../../../../image/face.png"></image>
 
+<view class="{{item.tag=='self' ? 'selfContentView' : 'otherContentView'}}">
+ <!--语音-->
+<image wx:if="{{item.flag=='语音'}}" class="{{item.tag=='self' ? 'selfVoicePic' : 'otherVoicePic'}}" src="{{item.src}}" mode="aspectFit" data-index="{{index}}" bindtap="voicePicTap" ></image>
+
 <!--文字内容-->
 <view  wx:if="{{item.flag=='文本'}}"  class="{{item.tag=='self' ? 'selfText' : 'otherText'}}" >{{item.text}}</view>
 
  <!--表情-->
-<image wx:if="{{item.flag=='表情'}}" class="{{item.tag=='self' ? 'selfFacePic' : 'otherFacePic'}}" src="{{item.facePic}}" mode="aspectFit" ></image>
+<image wx:if="{{item.flag=='表情'}}" class="{{item.tag=='self' ? 'selfFacePic' : 'otherFacePic'}}" src="{{item.src}}" mode="aspectFit" ></image>
 
  <!--照片-->
-<image wx:if="{{item.flag=='照片'}}" class="{{item.tag=='self' ? 'selfPhoto' : 'otherPhoto'}}" src="{{item.photo}}" mode="aspectFit"></image>
+<image wx:if="{{item.flag=='照片'}}" class="{{item.tag=='self' ? 'selfPhoto' : 'otherPhoto'}}" src="{{item.src}}" mode="aspectFit"></image>
 
- <!--语音-->
-<image wx:if="{{item.flag=='语音'}}" class="{{item.tag=='self' ? 'selfVoicePic' : 'otherVoicePic'}}" src="{{item.voicePic}}" mode="aspectFit" data-index="{{index}}" bindtap="voicePicTap" ></image>
+ <!--视频-->
+ <video wx:if="{{item.flag=='视频'}}" class="{{item.tag=='self' ? 'selfVideo' : 'otherVideo'}}" src="{{item.src}}" objectFit="cover"></video>
+
+<!--地图-->
+<map wx:if="{{item.flag=='地图'}}" class="{{item.tag=='self' ? 'selfMap' : 'otherMap'}}" longitude="113.324520" latitude="23.099994" scale="14" markers="{{item.map.markers}}" polyline="{{item.map.polyline}}" controls="{{item.map.controls}}" bindmarkertap="markertap" bindregionchange="regionchange" bindcontroltap="controltap"  ></map>
+
+</view>
+
+
+
+
+ 
 
 </view>
 </block>
@@ -42,7 +56,7 @@
 <!--输入框-->
 <input placeholder="请输入文字..." style="visibility:{{hideInput}};" value="{{inputValue}}" bindconfirm="sendTextAction"/>
 <!--按住说话view-->
-<view class="say" style="visibility:{{hideSayView}};" bindtouchstart="bindtouchstart" bindtouchend="bindtouchend">按住 说话</view>
+<view class="say" style="visibility:{{hideSayView}};" bindtouchstart="bindtouchstart" bindtouchend="bindtouchend" touchmove="bindtouchmove">按住 说话</view>
 
 <!--表情-->
 <view class="faceView" bindtap="faceAction">
@@ -62,15 +76,14 @@
 <view class="photoPan" style="height:{{photoPanHeight}}px;">
 
 <view wx:for="{{items}}" class="item" style="margin-left:{{itemMarginLeft}}px;">
-<view class="box" bindtap="boxAction">
+<view class="box" bindtap="boxAction" data-index="{{index}}">
 <image src="{{item.icon}}"></image>
 </view>
 <text class="subject">{{item.text}}</text>
 </view>
 
- 
-
 </view>
+ 
 
 </view>
 

@@ -14,7 +14,9 @@ Page({
   viewID:'toView',
   photoPanHeight:0,
   itemMarginLeft:0,
-  selfDatas:[
+
+  // 聊天数据：默认出现老师的问候
+  chatDatas:[
 {
   text:"家长您好，有什么可以帮到您孩子的 ？😊",
   facePic:'',
@@ -25,6 +27,7 @@ Page({
 }
   ],
 
+// 照片面板
    items:[
       {
        icon:"../../../../../image/album.png",
@@ -51,7 +54,57 @@ Page({
         icon:"../../../../../image/search.png",
        text:'收藏'
     }
-  ]
+  ],
+
+
+
+//所在位置标记点:
+map:{
+markers: [{  
+      iconPath: "../../../../../image/flag.png",
+      id: 0,  //marker点击事件回调会返回此id
+      latitude: 23.099994,
+      longitude: 113.324520,
+      title:'我的位置',
+      width: 30, //图片宽度
+      height: 30 //图片高度
+    }],
+
+    //路线(坐标点数组，从数组第一项连线至最后一项):
+    polyline: [{ 
+      points: [{ //经纬度数组:
+        longitude: 113.3245211,
+        latitude: 23.10229
+      }, {
+        longitude: 113.324520,
+        latitude: 23.21229
+      }],
+      color:"#FF0000DD",
+      width: 2, //线宽
+      dottedLine: true //是否虚线
+    }],
+
+  //在地图上显示控件(比如返回、回到原点、退出)，控件不随着地图移动
+    controls: [{
+      id: 1,//在控件点击事件回调会返回此id
+      iconPath: '../../../../../image/control.png',
+      position: { //控件相对地图的位置
+        right:5,
+        bottom:5,
+        width: 40,
+        height: 40
+      },
+      clickable: true
+    }]
+
+}
+
+
+
+
+
+
+
   },
   onLoad:function(options){
     // 生命周期函数--监听页面加载
@@ -166,29 +219,17 @@ wx.startRecord({
 
 },
 
+
 // func:松开手指，结束说话
 bindtouchend:function(){
 
-let that = this 
+let that = this
 wx.stopRecord({
   success: function(res){
 
-  // 包装数据
-let json = {
-  text:'',
-  facePic:'',
-  photo:'',
-  voicePic:'../../../../../image/voice.png',
-  flag:'语音',
-  tag:'self'
-}
- that.data.selfDatas.push(json)
-
 // 渲染声音
-that.setData({
-  viewID:'toView',
-  selfDatas:that.data.selfDatas
-})
+that.reloadData('','../../../../../image/voice.png','语音','self','')
+
   }
 })
 },
@@ -215,49 +256,23 @@ voicePicTap:function(e){
 // func:发送文字
 sendTextAction:function(e){
 
-let that = this 
 //没输入文字
 if(e.detail.value==''){
   return
 }
 
-  // 数组追加文字
-let json = {
-  text:e.detail.value,
-  facePic:'',
-  photo:'',
-  voicePic:'',
-  flag:'文本',
-  tag:'self'
-}
-that.data.selfDatas.push(json)
-that.setData({ 
-  viewID:'toView',
-  inputValue:'',//文字置空
-  selfDatas:that.data.selfDatas
-})
+// 渲染文字
+this.reloadData(e.detail.value,'','文本','self','')
+
+//文字置空
+this.setData({ inputValue:'', })
 },
+
 
 // func:发送表情
 faceAction:function(){
 
-let that = this 
-
-let json = {
-  text:'',
-  facePic:'../../../../../image/face.png',
-  photo:'',
-  voicePic:'',
-  flag:'表情',
-  tag:'self'
-}
-
- 
- that.data.selfDatas.push(json)
-that.setData({
-  viewID:'toView',
-  selfDatas:that.data.selfDatas
-})
+this.reloadData('','../../../../../image/face.png','表情','self','')
 },
 
 // func:添加照片
@@ -279,31 +294,155 @@ that.setData({
 
 
 // func:照片面板所有box点击事件
-boxAction:function(){
+boxAction:function(e){
+
+let that = this
+switch(e.currentTarget.dataset.index) {
+
+    case 0: that.albumAction() //相册
+    break;
+
+    case 1: that.cameraAction() //拍照
+    break; 
+
+    case 2: that.videoAction() //视频
+    break; 
+
+     case 3: that.mapAction() //地图
+    break; 
+
+    case 4: that.redPacketAction() //红包
+    break; 
+
+    case 5: that.callAction() //电话
+    break; 
+
+    case 6: that.voiceAction() //语音
+    break; 
+
+    case 7: that.colletAction() //收藏
+    break; 
+
+default: 
+ }
+
+
+},
+
+
+// func:相册
+albumAction:function(){
 
 let that = this
 wx.chooseImage({
   count: 9, // 最多可以选择的图片张数，默认9
   sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
-  sourceType: ['album', 'camera'], // album 从相册选图，camera 使用相机，默认二者都有
+  sourceType: ['album'],
   success: function(res){
  
-let json = {
-  text:'',
-  facePic:'',
-  photo:res.tempFilePaths[0],
-  voicePic:'',
-  flag:'照片',
-  tag:'self'
-}
-  that.data.selfDatas.push(json)
-
-that.setData({
-viewID:'toView',
-  selfDatas:that.data.selfDatas
-})
+ that.reloadData('',res.tempFilePaths[0],'照片','self','')
   }
 })
+},
+
+// func:拍照
+cameraAction:function(){
+
+let that = this
+wx.chooseImage({
+  count: 9, // 最多可以选择的图片张数，默认9
+  sizeType: ['original', 'compressed'], // original 原图，compressed 压缩图，默认二者都有
+  sourceType: ['camera'], // album 从相册选图，camera 使用相机，默认二者都有
+  success: function(res){
+
+ that.reloadData('',res.tempFilePaths[0],'照片','self','')
+  }
+})
+},
+
+
+//func:视频
+videoAction:function(){
+
+  let that = this
+wx.chooseVideo({
+  sourceType: ['album', 'camera'], // album 从相册选视频，camera 使用相机拍摄
+  // maxDuration: 60, // 拍摄视频最长拍摄时间，单位秒。最长支持60秒
+  camera: ['front', 'back'],
+  success: function(res){
+    that.reloadData('',res.tempFilePath,'视频','self','')
+  },
+  fail: function(res) {
+  }
+})
+},
+
+// function：地图
+mapAction:function(){
+  let that = this
+   that.reloadData('','','地图','self',that.data.map)
+},
+  // func:点击地图上标记点时触发
+  markertap(e) {
+    console.log(e.markerId)
+  },
+
+// func:地图视野发生变化时触发
+ regionchange(e) {
+    console.log(e.type)
+  },
+  
+  // func:点击地图控件时触发
+  controltap(e) {
+    console.log(e.controlId)
+  },
+
+
+// func:红包
+redPacketAction:function(){
+app.tip.showSuccess('暂无红包')
+},
+
+//func:电话
+callAction:function(){
+wx.makePhoneCall({
+  phoneNumber: '10086',
+  success: function(res) {
+    // success
+  }
+})
+},
+
+//func:收藏
+colletAction:function(){
+app.tip.showSuccess('已收藏')
+},
+
+// func:渲染数据
+reloadData:function(text,src,flag,tag,map){
+
+let that = this
+let item = {
+  text:text,
+  src:src,
+  map:map,
+  flag:flag,
+  tag:tag
 }
+that.data.chatDatas.push(item)
+that.setData({
+viewID:'toView',
+  chatDatas:that.data.chatDatas
+})
+},
+
+
+
+
+
+
+
+
+
 
 })

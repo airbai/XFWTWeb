@@ -77,11 +77,18 @@ right: 0;
 .selfCell{
   position: relative;
   margin: 20px 10px 0 60px;
- background: yellow;
 text-align: right;
 
 }
 
+/*自己内容view*/
+.selfContentView{
+
+background: lightgray;
+display: inline-block;
+margin-right: 50px;
+border-radius: 5px;
+}
 /*自己的头像*/
 .selfIcon{
  
@@ -90,46 +97,52 @@ text-align: right;
  top: 0px;
     width: 40px;
     height: 40px;
-    background: blue;
+  background: blue;
 }
 
+/*自己发送的语音*/
+.selfVoicePic{
+    width: 40px;
+    height: 40px;   
+}
 /*自己发送的文字*/
 .selfText{
-
-margin: 0 50px 0 0;
-padding: 13px 0;
-background: red;
+padding: 13px 5px;
  text-align: right;
 }
 /*自己发送的表情*/
 .selfFacePic{
- margin: 0 50px 0 0;
     width: 40px;
-    height: 40px; 
-background: brown;   
+    height: 40px;   
 }
 /*自己发送的照片*/
 .selfPhoto{
-   margin: 0 50px 0 0;
     width: 100px;
-    height: 100px; 
-background: brown;   
+    height: 100px;    
 }
-/*自己发送的语音*/
-.selfVoicePic{
-   margin: 0 50px 0 0;
-    width: 40px;
-    height: 40px; 
-background: brown;  
+/*自己发送的视频*/
+.selfVideo{
+    width: 100px;
+    height:100px; 
+}
+/*自己发送的地图*/
+.selfMap{
+    width: 100px;
+    height:100px;    
 }
 
 /*对方的cell*/
 .otherCell{
-    background: blueviolet;
   position: relative;
   margin: 20px 60px 0 10px;
- background: firebrick;
 text-align: left;
+}
+/*对方内容view*/
+.otherContentView{
+background: lightsteelblue;
+display: inline-block;
+margin-left: 50px;
+border-radius: 5px;
 }
 /*对方的头像*/
 .otherIcon{
@@ -138,37 +151,37 @@ text-align: left;
  top: 0px;
     width: 40px;
     height: 40px;
-    background: blue;
+}
+/*对方发的语音*/
+.otherVoicePic{
+    width: 40px;
+    height: 40px;  
 }
 /*对方发的文字*/
 .otherText{
-
-margin: 0 0 0 50px;
-padding: 13px 0;
-background: greenyellow;
+padding: 13px 5px;
  text-align: left;
  color: black;
 }
 /*对方发的表情*/
 .otherFacePic{
- margin: 0 0 0 50px;
     width: 40px;
     height: 40px; 
-background: brown; 
 }
 /*对方发的照片*/
 .otherPhoto{
-   margin: 0 0 0 50px;
     width: 100px;
     height: 100px; 
-background: brown; 
 }
-/*对方发的语音*/
-.otherVoicePic{
-    margin: 0 0 0 50px;
-    width: 40px;
-    height: 40px; 
-background: brown;  
+/*对方发送的视频*/
+.otherVideo{
+    width: 100px;
+    height: 100px;
+}
+/*对方发送的地图*/
+.otherMap{
+    width: 100px;
+    height:100px;    
 }
 
 
@@ -176,7 +189,6 @@ background: brown;
 /*底部隐藏的toView*/
 .hideView{
     height: 130px;
-    background: red;
 }
 
 /*照片面板*/
@@ -221,7 +233,6 @@ color: darkgray;
 margin: 2px auto;
 
 }
-
-
+ 
 
  
