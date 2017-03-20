@@ -6,6 +6,8 @@ let photoPanH = 200
 let itemW = 60
 Page({
   data:{
+    selfIcon:'',
+    otherIcon:'',
   hideSayView:"hidden",
   hideInput:"",
   facePic:'',
@@ -98,19 +100,14 @@ markers: [{
     }]
 
 }
-
-
-
-
-
-
-
   },
   onLoad:function(options){
     // 生命周期函数--监听页面加载
 
     // scroll-view初始高度
     this.setData({
+      selfIcon:app.imageUrl+app.util.getLoginInfo().iconLink,
+      otherIcon:app.imageUrl+options.PhoneLink,
       scrollViewH:app.windowHeight-footerH,
       itemMarginLeft: (app.windowWidth-itemW*4)/5
     })
@@ -435,14 +432,5 @@ viewID:'toView',
   chatDatas:that.data.chatDatas
 })
 },
-
-
-
-
-
-
-
-
-
 
 })

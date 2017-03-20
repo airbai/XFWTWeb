@@ -5,12 +5,13 @@
 
 <block wx:for="{{chatDatas}}">
 
-<!--自己cell-->
+<!--cell-->
 <view class="{{item.tag=='self' ? 'selfCell' : 'otherCell'}}" >
 
-<!--自己头像-->
-<image class="{{item.tag=='self' ? 'selfIcon' : 'otherIcon'}}" src="../../../../../image/face.png"></image>
+<!--头像-->
+<image class="{{item.tag=='self' ? 'selfIcon' : 'otherIcon'}}" src="{{item.tag=='self' ? selfIcon : otherIcon}}"></image>
 
+<!--内容-->
 <view class="{{item.tag=='self' ? 'selfContentView' : 'otherContentView'}}">
  <!--语音-->
 <image wx:if="{{item.flag=='语音'}}" class="{{item.tag=='self' ? 'selfVoicePic' : 'otherVoicePic'}}" src="{{item.src}}" mode="aspectFit" data-index="{{index}}" bindtap="voicePicTap" ></image>

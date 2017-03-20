@@ -193,7 +193,7 @@ chatAction:function(e){
 
 let that = this
  wx.navigateTo({
-   url: 'chat/index?teacherName='+that.data.baseInfoData.UserName
+   url: 'chat/index?teacherName='+that.data.baseInfoData.UserName+'&PhoneLink='+that.data.baseInfoData.PhoneLink
  })
 },
 
