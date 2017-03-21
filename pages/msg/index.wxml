@@ -1,0 +1,10 @@
+<view class="contain">
+
+<view class="cell" bindtap="cellAction">
+
+<image class="icon" src="../../image/my_teacher@3x.png"></image>
+<text class="text">@我的老师</text>
+<image class="arrow" src="../../image/0106arrow3x.png"></image>
+</view>
+
+</view>

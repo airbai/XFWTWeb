@@ -7,6 +7,7 @@
 "pages/login/forgetPwd/index",
 "pages/index/index",
 "pages/course/index",
+"pages/msg/index",
 "pages/me/index",
 "pages/index/teachers/index",
 "pages/me/personalPage/index",
@@ -19,7 +20,6 @@
 "pages/me/mySet/modifyPwd/index",
 "pages/me/mySet/sayOpinion/index",
 "pages/index/teachers/teacherPage/index",
-
 "pages/index/teachers/teacherPage/confirmOrder/index",
 "pages/index/teachers/teacherPage/confirmOrder/pay/index"
 ],
@@ -46,6 +46,11 @@
                  "iconPath": "image/0226courseD.png",
                  "selectedIconPath": "image/0226courseS.png",
                  "text": "课程"
+                 },  {
+                 "pagePath": "pages/msg/index",
+                 "iconPath": "image/msgD.png",
+                 "selectedIconPath": "image/msgS.png",
+                 "text": "消息"
                  },  {
                  "pagePath": "pages/me/index",
                  "iconPath": "image/0225mineD.png",
