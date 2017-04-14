@@ -76,15 +76,32 @@ wx.getSystemInfo({
     }else{
       //调用登录接口
       wx.login({
-        success: function () {
+        success: function (res) {
 
+      //  1.获取用户信息
           wx.getUserInfo({
             success: function (res) {
 
-        that.userInfo = res.userInfo
+             that.userInfo = res.userInfo
               typeof cb == "function" && cb(that.userInfo)
             }
           })
+
+          //2.发送code给开发者服务器来获取session_key（密钥）和openid（用户唯一身份）
+         if (res.code) {
+          wx.request({
+            url: 'https://api.weixin.qq.com/sns/jscode2session?',
+            data: {
+              appid: '',  //从商户平台获取
+              secret: '', //从商户平台获取
+              js_code: res.code,
+              grant_type: 'authorization_code'
+            }
+          })
+        } else {
+          console.log('获取用户登录态失败！' + res.errMsg)
+        }
+
         }
       })
     }

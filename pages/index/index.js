@@ -99,15 +99,15 @@ wx.showNavigationBarLoading()
 
 //3. 请求数据
 wx.request({
-  url: getApp().serverUrl,
+  url: app.serverUrl,
   data: {
      action: 'SearchNearTeachers' ,
-     longitude: getApp().longitude ,
-     latitude:  getApp().latitude ,
+     longitude: app.longitude ,
+     latitude:  app.latitude ,
      distance: '10000000' ,
      pageIndex: index,
      pageSize: '15' ,
-     VerSafe: getApp().VerSafe
+     VerSafe: app.VerSafe
   },
   header: {
       'content-type': 'application/json'
@@ -146,6 +146,8 @@ clickedBoxView: function(event) {
 wx.navigateTo({ 
   url: 'teachers/index?id='+id+'&titleType='+titleType
 })
+
+
 },
 
  // func:点击cell事件

@@ -2,6 +2,7 @@ let app = getApp()
 
 Page({
   data:{
+ icon:'../../../image/my_teacher@2x.png',
   phoneNum : '',
   pwd : '',
   loadingHide : true
@@ -23,6 +24,8 @@ Page({
 
 // 自动登录
 that.loginAction()
+
+
 
   },
   onReady:function(){
@@ -48,14 +51,15 @@ that.loginAction()
     // 页面上拉触底事件的处理函数
   
   },
-//   onShareAppMessage: function() {
-//     // 用户点击右上角分享
-//     return {
-//       title: 'title', // 分享标题
-//       desc: 'desc', // 分享描述
-//       path: 'path' // 分享路径
-//     }
-//   },
+  // onShareAppMessage: function() {
+  //   // 用户点击右上角分享
+  //   return {
+  //     title: 'title', // 分享标题
+  //     desc: 'desc', // 分享描述
+  //     path: 'path' // 分享路径
+  //   }
+
+  // },
   phoneInputValueChanged :function(e){
     //   手机输入框输入了就会调用
     this.data.phoneNum = e.detail.value
